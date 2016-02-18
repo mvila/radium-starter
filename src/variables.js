@@ -4,6 +4,17 @@ import Color from 'color';
 import reduceCSSCalc from 'reduce-css-calc';
 
 export class Variables {
+  constructor(customVars = {}) {
+    for (let key of Object.keys(customVars)) {
+      let value = customVars[key];
+      Object.defineProperty(this, key, { value });
+    }
+  }
+
+  keys() {
+    return Object.keys(Variables.prototype);
+  }
+
   // --- Colors ---
 
   @def $primaryColor = '#0275D8'; // blue
@@ -137,19 +148,6 @@ export class Variables {
   @def $smallBreakpoint = '640px';
   @def $mediumBreakpoint = '1024px';
   @def $largeBreakpoint = '1440px';
-
-  // --- Internal plumbing ---
-
-  constructor(customVars = {}) {
-    for (let key of Object.keys(customVars)) {
-      let value = customVars[key];
-      Object.defineProperty(this, key, { value });
-    }
-  }
-
-  keys() {
-    return Object.keys(Variables.prototype);
-  }
 }
 
 function def(target, name, descriptor) {

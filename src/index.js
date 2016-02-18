@@ -6,7 +6,7 @@ import Styles from './styles';
 import buttonComponentCreator from './components/button';
 import inputComponentCreator from './components/input';
 
-class RadiumStarter {
+export class RadiumStarter {
   constructor(customVars) {
     let vars = new Variables(customVars);
 

@@ -108,13 +108,17 @@ export class Variables {
   @def $largeButtonXPadding = '1.5rem';
   @def $largeButtonYPadding = '.75rem';
 
+  @def $buttonColor = this.$darkGray;
+  @def $buttonBackgroundColor = '#FFF';
+  @def $buttonBorderColor = '#CCC';
+
   @def $buttonPrimaryColor = '#FFF';
   @def $buttonPrimaryBackgroundColor = this.$primaryColor;
   @def $buttonPrimaryBorderColor = this.$buttonPrimaryBackgroundColor;
 
-  @def $buttonSecondaryColor = this.$darkGray;
-  @def $buttonSecondaryBackgroundColor = '#FFF';
-  @def $buttonSecondaryBorderColor = '#CCC';
+  @def $buttonSecondaryColor = '#FFF';
+  @def $buttonSecondaryBackgroundColor = this.$secondaryColor;
+  @def $buttonSecondaryBorderColor = this.$buttonSecondaryBackgroundColor;
 
   // --- Forms ---
 

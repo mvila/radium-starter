@@ -9,7 +9,8 @@ export function buttonComponentCreator(vars) {
   return @Radium class Button extends React.Component {
     static propTypes = {
       size: React.PropTypes.string,
-      kind: React.PropTypes.string,
+      primary: React.PropTypes.bool,
+      secondary: React.PropTypes.bool,
       disabled: React.PropTypes.bool,
       style: React.PropTypes.object
     };
@@ -37,14 +38,18 @@ export function buttonComponentCreator(vars) {
       }
 
       let color, backgroundColor, borderColor;
-      if (this.props.kind === 'primary') {
+      if (this.props.primary) {
         color = vars.$buttonPrimaryColor;
         backgroundColor = vars.$buttonPrimaryBackgroundColor;
         borderColor = vars.$buttonPrimaryBorderColor;
-      } else {
+      } else if (this.props.secondary) {
         color = vars.$buttonSecondaryColor;
         backgroundColor = vars.$buttonSecondaryBackgroundColor;
         borderColor = vars.$buttonSecondaryBorderColor;
+      } else {
+        color = vars.$buttonColor;
+        backgroundColor = vars.$buttonBackgroundColor;
+        borderColor = vars.$buttonBorderColor;
       }
       let activeBackgroundColor = Color(backgroundColor).darken(0.1).hexString();
       let activeBorderColor = Color(borderColor).darken(0.12).hexString();

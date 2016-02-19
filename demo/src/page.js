@@ -50,18 +50,18 @@ export class Page extends React.Component {
         <h2 style={title2}>Forms</h2>
 
         <h3 style={title3}>Buttons</h3>
-        <p><s.Button size='small'>Small button</s.Button></p>
+        <p><s.Button small>Small button</s.Button></p>
         <p><s.Button>Normal button</s.Button></p>
-        <p><s.Button size='large'>Large button</s.Button></p>
+        <p><s.Button large>Large button</s.Button></p>
         <p><s.Button primary>Primary button</s.Button></p>
         <p><s.Button secondary>Secondary button</s.Button></p>
         <p><s.Button disabled>Disabled button</s.Button></p>
         <p><s.Button style={[s.primaryColor, { textTransform: 'uppercase' }]}>Custom button</s.Button></p>
 
         <h3 style={title3}>Inputs</h3>
-        <p><s.Input type='text' size='small' defaultValue='Small field' /></p>
+        <p><s.Input type='text' small defaultValue='Small field' /></p>
         <p><s.Input type='text' defaultValue='Normal field' /></p>
-        <p><s.Input type='text' size='large' defaultValue='Large field' /></p>
+        <p><s.Input type='text' large defaultValue='Large field' /></p>
         <p><s.Input type='text' disabled defaultValue='Disabled field' /></p>
         <p><s.Input type='text' readOnly defaultValue='Read only field' /></p>
         <p><s.Input type='text' placeholder='Placeholder' /></p>

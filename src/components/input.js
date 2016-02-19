@@ -9,7 +9,8 @@ export function inputComponentCreator(vars) {
     static displayName = 'Input';
 
     static propTypes = {
-      size: React.PropTypes.string,
+      small: React.PropTypes.bool,
+      large: React.PropTypes.bool,
       disabled: React.PropTypes.bool,
       readonly: React.PropTypes.bool,
       style: React.PropTypes.object
@@ -17,24 +18,21 @@ export function inputComponentCreator(vars) {
 
     render() {
       let xPadding, yPadding, fontSize, borderRadius;
-      switch (this.props.size) {
-        case 'small':
-          xPadding = vars.$smallInputXPadding;
-          yPadding = vars.$smallInputYPadding;
-          fontSize = vars.$smallFontSize;
-          borderRadius = vars.$smallBorderRadius;
-          break;
-        case 'large':
-          xPadding = vars.$largeInputXPadding;
-          yPadding = vars.$largeInputYPadding;
-          fontSize = vars.$largeFontSize;
-          borderRadius = vars.$largeBorderRadius;
-          break;
-        default:
-          xPadding = vars.$inputXPadding;
-          yPadding = vars.$inputYPadding;
-          fontSize = vars.$baseFontSize;
-          borderRadius = vars.$borderRadius;
+      if (this.props.small) {
+        xPadding = vars.$smallInputXPadding;
+        yPadding = vars.$smallInputYPadding;
+        fontSize = vars.$smallFontSize;
+        borderRadius = vars.$smallBorderRadius;
+      } else if (this.props.large) {
+        xPadding = vars.$largeInputXPadding;
+        yPadding = vars.$largeInputYPadding;
+        fontSize = vars.$largeFontSize;
+        borderRadius = vars.$largeBorderRadius;
+      } else {
+        xPadding = vars.$inputXPadding;
+        yPadding = vars.$inputYPadding;
+        fontSize = vars.$baseFontSize;
+        borderRadius = vars.$borderRadius;
       }
 
       let style = {

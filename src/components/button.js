@@ -10,7 +10,8 @@ export function buttonComponentCreator(vars) {
     static displayName = 'Button';
 
     static propTypes = {
-      size: React.PropTypes.string,
+      small: React.PropTypes.bool,
+      large: React.PropTypes.bool,
       primary: React.PropTypes.bool,
       secondary: React.PropTypes.bool,
       disabled: React.PropTypes.bool,
@@ -19,24 +20,21 @@ export function buttonComponentCreator(vars) {
 
     render() {
       let xPadding, yPadding, fontSize, borderRadius;
-      switch (this.props.size) {
-        case 'small':
-          xPadding = vars.$smallButtonXPadding;
-          yPadding = vars.$smallButtonYPadding;
-          fontSize = vars.$smallFontSize;
-          borderRadius = vars.$smallBorderRadius;
-          break;
-        case 'large':
-          xPadding = vars.$largeButtonXPadding;
-          yPadding = vars.$largeButtonYPadding;
-          fontSize = vars.$largeFontSize;
-          borderRadius = vars.$largeBorderRadius;
-          break;
-        default:
-          xPadding = vars.$buttonXPadding;
-          yPadding = vars.$buttonYPadding;
-          fontSize = vars.$baseFontSize;
-          borderRadius = vars.$borderRadius;
+      if (this.props.small) {
+        xPadding = vars.$smallButtonXPadding;
+        yPadding = vars.$smallButtonYPadding;
+        fontSize = vars.$smallFontSize;
+        borderRadius = vars.$smallBorderRadius;
+      } else if (this.props.large) {
+        xPadding = vars.$largeButtonXPadding;
+        yPadding = vars.$largeButtonYPadding;
+        fontSize = vars.$largeFontSize;
+        borderRadius = vars.$largeBorderRadius;
+      } else {
+        xPadding = vars.$buttonXPadding;
+        yPadding = vars.$buttonYPadding;
+        fontSize = vars.$baseFontSize;
+        borderRadius = vars.$borderRadius;
       }
 
       let color, backgroundColor, borderColor;

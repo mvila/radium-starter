@@ -42,6 +42,10 @@ class Styles {
       fontStyle: 'italic'
     };
 
+    this.mutedText = {
+      color: vars.$mutedTextColor
+    };
+
     this.border = {
       borderWidth: vars.$borderWidth,
       borderStyle: 'solid',

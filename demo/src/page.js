@@ -59,13 +59,15 @@ export class Page extends React.Component {
         <p><s.Button style={[s.primaryColor, { textTransform: 'uppercase' }]}>Custom button</s.Button></p>
 
         <h3 style={title3}>Inputs</h3>
-        <p><s.Input size='small' defaultValue='Small field' /></p>
-        <p><s.Input defaultValue='Normal field' /></p>
-        <p><s.Input size='large' defaultValue='Large field' /></p>
-        <p><s.Input disabled defaultValue='Disabled field' /></p>
-        <p><s.Input readOnly defaultValue='Read only field' /></p>
-        <p><s.Input placeholder='Placeholder' /></p>
-        <p><s.Input defaultValue='Custom field' style={s.secondaryColor} /></p>
+        <p><s.Input type='text' size='small' defaultValue='Small field' /></p>
+        <p><s.Input type='text' defaultValue='Normal field' /></p>
+        <p><s.Input type='text' size='large' defaultValue='Large field' /></p>
+        <p><s.Input type='text' disabled defaultValue='Disabled field' /></p>
+        <p><s.Input type='text' readOnly defaultValue='Read only field' /></p>
+        <p><s.Input type='text' placeholder='Placeholder' /></p>
+        <p><s.Input type='text' defaultValue='Custom field' style={s.secondaryColor} /></p>
+        <p style={{ lineHeight: 1 }}><label><s.Input type='checkbox' />&nbsp;&nbsp;Checkbox</label></p>
+        <p style={{ lineHeight: 1 }}><label><s.Input type='radio' />&nbsp;&nbsp;Radio button</label></p>
       </div>
     );
   }

@@ -129,7 +129,7 @@ class Reboot {
 
       label: {
         display: 'inline-block',
-        marginBottom: '.5rem'
+        marginBottom: 0 // was '.5rem' in Bootstrap 4
       },
 
       'input, button, select, textarea': {

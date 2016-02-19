@@ -70,8 +70,8 @@ export function inputComponentCreator(vars) {
 
       style = [style, this.props.style];
 
-      let otherProps = omit(this.props, 'style');
-      return <input style={style} {...otherProps} />;
+      let props = omit(this.props, ['small', 'large', 'style']);
+      return <input style={style} {...props} />;
     }
   };
 }

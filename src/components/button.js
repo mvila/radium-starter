@@ -113,8 +113,8 @@ export function buttonComponentCreator(vars) {
 
       style = [style, this.props.style];
 
-      let otherProps = omit(this.props, 'style');
-      return <button style={style} {...otherProps} />;
+      let props = omit(this.props, ['small', 'large', 'primary', 'secondary', 'style']);
+      return <button style={style} {...props} />;
     }
   };
 }

@@ -1,3 +1,4 @@
 {
-  "extends": "eslint-config-next"
+  "extends": ["eslint-config-next", "plugin:react/recommended"],
+  "plugins": ["react"]
 }

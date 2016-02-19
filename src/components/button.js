@@ -7,6 +7,8 @@ import Color from 'color';
 
 export function buttonComponentCreator(vars) {
   return @Radium class Button extends React.Component {
+    static displayName = 'Button';
+
     static propTypes = {
       size: React.PropTypes.string,
       primary: React.PropTypes.bool,
@@ -111,7 +113,8 @@ export function buttonComponentCreator(vars) {
         });
       }
 
-      Object.assign(style, this.props.style);
+      style = [style, this.props.style];
+
       let otherProps = omit(this.props, 'style');
       return <button style={style} {...otherProps} />;
     }

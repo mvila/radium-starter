@@ -6,6 +6,8 @@ import omit from 'lodash/omit';
 
 export function inputComponentCreator(vars) {
   return @Radium class Input extends React.Component {
+    static displayName = 'Input';
+
     static propTypes = {
       size: React.PropTypes.string,
       disabled: React.PropTypes.bool,
@@ -68,9 +70,9 @@ export function inputComponentCreator(vars) {
         style.cursor = vars.$disabledCursor;
       }
 
-      Object.assign(style, this.props.style);
-      let otherProps = omit(this.props, 'style');
+      style = [style, this.props.style];
 
+      let otherProps = omit(this.props, 'style');
       return <input style={style} {...otherProps} />;
     }
   };

@@ -61,11 +61,11 @@ class Styles {
       borderColor: theme.borderColor
     };
 
-    this.topBorder = {
+    this.topBorder = [{
       borderTopWidth: theme.borderWidth,
       borderTopStyle: 'solid',
       borderTopColor: theme.borderColor
-    };
+    }];
 
     this.rightBorder = {
       borderRightWidth: theme.borderWidth,

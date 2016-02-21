@@ -11,20 +11,20 @@ export class Page extends React.Component {
   };
 
   render() {
-    let { styles } = this.context;
+    let { styles: s } = this.context;
 
     let title1 = [
-      styles.primaryTextColorForDarkBackground,
-      styles.backgroundPrimaryColor,
-      styles.regular,
+      s.primaryTextColorForDarkBackground,
+      s.backgroundPrimaryColor,
+      s.regular,
       { padding: '5rem 1.5rem 1rem 1.5rem', marginBottom: '-3rem' }
     ];
     let title2 = [
-      styles.topBorder,
+      s.topBorder,
       { marginTop: '3rem', marginBottom: '1.5rem', paddingTop: '3rem' }
     ];
     let title3 = [
-      styles.secondaryTextColor,
+      s.secondaryTextColor,
       { marginTop: '2rem', marginBottom: '1rem' }
     ];
 
@@ -35,12 +35,12 @@ export class Page extends React.Component {
         <h2 style={title2}>Layout</h2>
 
         <h3 style={title3}>Responsive utilities</h3>
-        <p style={[styles.hiddenIfSmall]}>hiddenIfSmall</p>
-        <p style={[styles.shownIfSmall]}>shownIfSmall</p>
-        <p style={[styles.hiddenIfMedium]}>hiddenIfMedium</p>
-        <p style={[styles.shownIfMedium]}>shownIfMedium</p>
-        <p style={[styles.hiddenIfLarge]}>hiddenIfLarge</p>
-        <p style={[styles.shownIfLarge]}>shownIfLarge</p>
+        <p style={[s.hiddenIfSmall]}>hiddenIfSmall</p>
+        <p style={[s.shownIfSmall]}>shownIfSmall</p>
+        <p style={[s.hiddenIfMedium]}>hiddenIfMedium</p>
+        <p style={[s.shownIfMedium]}>shownIfMedium</p>
+        <p style={[s.hiddenIfLarge]}>hiddenIfLarge</p>
+        <p style={[s.shownIfLarge]}>shownIfLarge</p>
 
         <h2 style={title2}>Typography</h2>
 
@@ -68,7 +68,7 @@ export class Page extends React.Component {
         <p><Button primary>Primary button</Button></p>
         <p><Button accent>Accent button</Button></p>
         <p><Button disabled>Disabled button</Button></p>
-        <p><Button style={[styles.primaryColor, { textTransform: 'uppercase' }]}>Custom button</Button></p>
+        <p><Button style={[s.primaryColor, { textTransform: 'uppercase' }]}>Custom button</Button></p>
 
         <h3 style={title3}>Inputs</h3>
         <p><Input type='text' small defaultValue='Small field' /></p>
@@ -77,7 +77,7 @@ export class Page extends React.Component {
         <p><Input type='text' disabled defaultValue='Disabled field' /></p>
         <p><Input type='text' readOnly defaultValue='Read only field' /></p>
         <p><Input type='text' placeholder='Placeholder' /></p>
-        <p><Input type='text' defaultValue='Custom field' style={styles.primaryColor} /></p>
+        <p><Input type='text' defaultValue='Custom field' style={s.primaryColor} /></p>
         <p style={{ lineHeight: 1 }}><label><Input type='checkbox' />&nbsp;&nbsp;Checkbox</label></p>
         <p style={{ lineHeight: 1 }}><label><Input type='radio' />&nbsp;&nbsp;Radio button</label></p>
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Starter from '../../src';
+import RadiumStarter from '../../src';
 import Page from './page';
 
 class Application {
@@ -14,7 +14,7 @@ class Application {
 
   run() {
     ReactDOM.render(
-      <Starter><Page /></Starter>,
+      <RadiumStarter><Page /></RadiumStarter>,
       document.getElementById('root')
     );
   }

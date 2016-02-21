@@ -11,12 +11,12 @@ class Application {
     this.port = 12345;
   }
 
-  async run() {
+  run() {
     this.build({ watch: true });
     this.start();
   }
 
-  async build(options = {}) {
+  build(options = {}) {
     let builder = new Builder(this, {
       sourceDir: pathModule.join(__dirname, 'src'),
       targetDir: pathModule.join(__dirname, 'dist'),
@@ -45,10 +45,10 @@ class Application {
       watchMode: options.watch
     });
 
-    await builder.build();
+    builder.build().catch(console.error);
   }
 
-  async start() {
+  start() {
     let server = new Server(this, {
       port: this.port,
       path: pathModule.join(__dirname, 'dist')
@@ -60,4 +60,4 @@ class Application {
 
 let app = new Application();
 
-app.run().catch(console.error);
+app.run();

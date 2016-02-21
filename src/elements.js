@@ -5,33 +5,33 @@ import normalize from 'radium-normalize';
 import Reboot from './reboot';
 
 class Elements {
-  constructor(vars) {
+  constructor(theme) {
     merge(this, normalize);
 
-    let reboot = new Reboot(vars);
+    let reboot = new Reboot(theme);
     merge(this, reboot);
 
     merge(this, {
       'h1, h2, h3, h4, h5, h6': {
-        marginBottom: vars.$headingsMarginBottom,
-        fontFamily: vars.$headingsFontFamily,
-        fontWeight: vars.$headingsFontWeight,
-        lineHeight: vars.$headingsLineHeight,
-        color: vars.$headingsColor
+        marginBottom: theme.headingsMarginBottom,
+        fontFamily: theme.headingsFontFamily,
+        fontWeight: theme.headingsFontWeight,
+        lineHeight: theme.headingsLineHeight,
+        color: theme.headingsColor
       },
 
-      h1: { fontSize: vars.$h1FontSize },
-      h2: { fontSize: vars.$h2FontSize },
-      h3: { fontSize: vars.$h3FontSize },
-      h4: { fontSize: vars.$h4FontSize },
-      h5: { fontSize: vars.$h5FontSize },
-      h6: { fontSize: vars.$h6FontSize },
+      h1: { fontSize: theme.h1FontSize },
+      h2: { fontSize: theme.h2FontSize },
+      h3: { fontSize: theme.h3FontSize },
+      h4: { fontSize: theme.h4FontSize },
+      h5: { fontSize: theme.h5FontSize },
+      h6: { fontSize: theme.h6FontSize },
 
       hr: {
-        marginTop: vars.$spacer,
-        marginBottom: vars.$spacer,
+        marginTop: '1rem',
+        marginBottom: '1rem',
         border: 0,
-        borderTop: `${vars.$borderWidth} solid ${vars.$borderColor}`
+        borderTop: `${theme.borderWidth} solid ${theme.borderColor}`
       },
 
       small: {
@@ -39,19 +39,19 @@ class Elements {
       },
 
       'form.submitted input:invalid, form.submitted select:invalid, form.submitted textarea:invalid': {
-        borderColor: `${vars.$errorColor} !important`
+        borderColor: `${theme.errorColor} !important`
       },
 
       'code, kbd, pre, samp': {
-        fontFamily: vars.$monospaceFontFamily
+        fontFamily: theme.monospaceFontFamily
       },
 
       code: {
         padding: '.2rem .4rem',
         fontSize: '90%',
-        color: vars.$codeColor,
-        backgroundColor: vars.$codeBackgroundColor,
-        borderRadius: vars.$borderRadius
+        color: theme.codeColor,
+        backgroundColor: theme.codeBackgroundColor,
+        borderRadius: theme.borderRadius
       },
 
       pre: {
@@ -59,7 +59,7 @@ class Elements {
         marginTop: 0,
         marginBottom: '1rem',
         fontSize: '90%',
-        color: vars.$preColor
+        color: theme.preColor
       },
 
       'pre code': {

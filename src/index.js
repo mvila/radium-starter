@@ -1,29 +1,45 @@
 'use strict';
 
-import Variables from './variables';
+import React from 'react';
+import { StyleRoot, Style } from 'radium';
+import Theme from './theme';
 import Elements from './elements';
 import Styles from './styles';
-import formComponentCreator from './components/form';
-import inputComponentCreator from './components/input';
-import buttonComponentCreator from './components/button';
 
-export class RadiumStarter {
-  constructor(customVars) {
-    let vars = new Variables(customVars);
+export class RadiumStarter extends React.Component {
+  static propTypes = {
+    theme: React.PropTypes.object,
+    children: React.PropTypes.node.isRequired
+  };
 
-    for (let key of vars.keys()) {
-      this[key] = vars[key];
-    }
+  static childContextTypes = {
+    theme: React.PropTypes.object,
+    styles: React.PropTypes.object
+  };
 
-    this.elements = new Elements(vars);
+  constructor(props) {
+    super(props);
+    this.theme = new Theme(this.props.theme);
+    this.elements = new Elements(this.theme);
+    this.styles = new Styles(this.theme);
+  }
 
-    let styles = new Styles(vars);
-    Object.assign(this, styles);
+  getChildContext() {
+    return { theme: this.theme, styles: this.styles };
+  }
 
-    this.Form = formComponentCreator(vars);
-    this.Input = inputComponentCreator(vars);
-    this.Button = buttonComponentCreator(vars);
+  render() {
+    return (
+      <StyleRoot>
+        <Style rules={this.elements} />
+        {this.props.children}
+      </StyleRoot>
+    );
   }
 }
+
+export { Form } from './components/form';
+export { Input } from './components/input';
+export { Button } from './components/button';
 
 export default RadiumStarter;

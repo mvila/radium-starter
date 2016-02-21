@@ -1,23 +1,32 @@
 'use strict';
 
+import upperFirst from 'lodash/upperFirst';
 import reduceCSSCalc from 'reduce-css-calc';
 
 class Styles {
-  constructor(vars) {
-    this.primaryColor = { color: vars.$primaryColor };
-    this.secondaryColor = { color: vars.$secondaryColor };
-
-    this.darkGray = { color: vars.$darkGray };
-    this.gray = { color: vars.$gray };
-    this.lightGray = { color: vars.$lightGray };
-    this.lighterGray = { color: vars.$lighterGray };
-    this.lightestGray = { color: vars.$lightestGray };
-
-    this.darkGrayBackground = { backgroundColor: vars.$darkGray };
-    this.grayBackground = { backgroundColor: vars.$gray };
-    this.lightGrayBackground = { backgroundColor: vars.$lightGray };
-    this.lighterGrayBackground = { backgroundColor: vars.$lighterGray };
-    this.lightestGrayBackground = { backgroundColor: vars.$lightestGray };
+  constructor(theme) {
+    let keys = [
+      'primaryColor',
+      'darkPrimaryColor',
+      'lightPrimaryColor',
+      'accentColor',
+      'darkAccentColor',
+      'backgroundColor',
+      'borderColor',
+      'primaryTextColor',
+      'secondaryTextColor',
+      'mutedTextColor',
+      'primaryTextColorForDarkBackground',
+      'secondaryTextColorForDarkBackground',
+      'mutedTextColorForDarkBackground',
+      'errorColor',
+      'warningColor'
+    ];
+    for (let key of keys) {
+      let value = theme[key];
+      this[key] = { color: value };
+      this['background' + upperFirst(key)] = { backgroundColor: value };
+    }
 
     this.block = { display: 'block' };
     this.inline = { display: 'inline' };
@@ -43,41 +52,41 @@ class Styles {
     };
 
     this.mutedText = {
-      color: vars.$mutedTextColor
+      color: theme.mutedTextColor
     };
 
     this.border = {
-      borderWidth: vars.$borderWidth,
+      borderWidth: theme.borderWidth,
       borderStyle: 'solid',
-      borderColor: vars.$borderColor
+      borderColor: theme.borderColor
     };
 
     this.topBorder = {
-      borderTopWidth: vars.$borderWidth,
+      borderTopWidth: theme.borderWidth,
       borderTopStyle: 'solid',
-      borderTopColor: vars.$borderColor
+      borderTopColor: theme.borderColor
     };
 
     this.rightBorder = {
-      borderRightWidth: vars.$borderWidth,
+      borderRightWidth: theme.borderWidth,
       borderRightStyle: 'solid',
-      borderRightColor: vars.$borderColor
+      borderRightColor: theme.borderColor
     };
 
     this.bottomBorder = {
-      borderBottomWidth: vars.$borderWidth,
+      borderBottomWidth: theme.borderWidth,
       borderBottomStyle: 'solid',
-      borderBottomColor: vars.$borderColor
+      borderBottomColor: theme.borderColor
     };
 
     this.leftBorder = {
-      borderLeftWidth: vars.$borderWidth,
+      borderLeftWidth: theme.borderWidth,
       borderLeftStyle: 'solid',
-      borderLeftColor: vars.$borderColor
+      borderLeftColor: theme.borderColor
     };
 
     this.rounded = {
-      borderRadius: vars.$borderRadius
+      borderRadius: theme.borderRadius
     };
 
     this.unstyledList = {
@@ -86,12 +95,12 @@ class Styles {
     };
 
     this.hiddenIfSmall = {
-      [`@media (max-width: ${vars.$smallBreakpoint})`]: {
+      [`@media (max-width: ${theme.smallBreakpoint})`]: {
         display: 'none'
       }
     };
 
-    let smallPlusOne = reduceCSSCalc(`calc(${vars.$smallBreakpoint} + 1px)`);
+    let smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
     this.shownIfSmall = {
       [`@media (min-width: ${smallPlusOne})`]: {
         display: 'none'
@@ -99,12 +108,12 @@ class Styles {
     };
 
     this.hiddenIfMedium = {
-      [`@media (max-width: ${vars.$mediumBreakpoint})`]: {
+      [`@media (max-width: ${theme.mediumBreakpoint})`]: {
         display: 'none'
       }
     };
 
-    let mediumPlusOne = reduceCSSCalc(`calc(${vars.$mediumBreakpoint} + 1px)`);
+    let mediumPlusOne = reduceCSSCalc(`calc(${theme.mediumBreakpoint} + 1px)`);
     this.shownIfMedium = {
       [`@media (min-width: ${mediumPlusOne})`]: {
         display: 'none'
@@ -112,12 +121,12 @@ class Styles {
     };
 
     this.hiddenIfLarge = {
-      [`@media (max-width: ${vars.$largeBreakpoint})`]: {
+      [`@media (max-width: ${theme.largeBreakpoint})`]: {
         display: 'none'
       }
     };
 
-    let largePlusOne = reduceCSSCalc(`calc(${vars.$largeBreakpoint} + 1px)`);
+    let largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
     this.shownIfLarge = {
       [`@media (min-width: ${largePlusOne})`]: {
         display: 'none'

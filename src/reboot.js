@@ -3,11 +3,11 @@
 // Credit: https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
 
 class Reboot {
-  constructor(vars) {
+  constructor(theme) {
     Object.assign(this, {
       html: {
         boxSizing: 'border-box',
-        fontSize: vars.$rootFontSize,
+        fontSize: theme.rootFontSize,
         MsOverflowStyle: 'scrollbar',
         WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'
       },
@@ -21,11 +21,11 @@ class Reboot {
       },
 
       body: {
-        fontFamily: vars.$baseFontFamily,
-        fontSize: vars.$baseFontSize,
-        lineHeight: vars.$baseLineHeight,
-        color: vars.$bodyColor,
-        backgroundColor: vars.$bodyBackgroundColor
+        fontFamily: theme.baseFontFamily,
+        fontSize: theme.baseFontSize,
+        lineHeight: theme.baseLineHeight,
+        color: theme.primaryTextColor,
+        backgroundColor: theme.backgroundColor
       },
 
       '[tabindex="-1"]:focus': {
@@ -71,13 +71,13 @@ class Reboot {
       },
 
       a: {
-        color: vars.$linkColor,
-        textDecoration: vars.$linkDecoration
+        color: theme.linkColor,
+        textDecoration: theme.linkDecoration
       },
 
       'a:hover': {
-        color: vars.$linkHoverColor,
-        textDecoration: vars.$linkHoverDecoration
+        color: theme.linkHoverColor,
+        textDecoration: theme.linkHoverDecoration
       },
 
       pre: {
@@ -112,13 +112,13 @@ class Reboot {
       },
 
       table: {
-        backgroundColor: vars.$tableBackgroundColor
+        backgroundColor: theme.tableBackgroundColor
       },
 
       caption: {
-        paddingTop: vars.$tableCellPadding,
-        paddingBottom: vars.$tableCellPadding,
-        color: vars.$mutedTextColor,
+        paddingTop: theme.tableCellPadding,
+        paddingBottom: theme.tableCellPadding,
+        color: theme.secondaryTextColor,
         textAlign: 'left',
         captionSide: 'bottom'
       },

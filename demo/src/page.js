@@ -21,7 +21,7 @@ export class Page extends React.Component {
 
     return (
       <div style={{ margin: '1rem auto', width: 800 }}>
-        <h1 style={title1}>RadiumStarter Demo</h1>
+        <h1 style={title1}>Radium Starter Demo</h1>
 
         <h2 style={title2}>Layout</h2>
 
@@ -68,6 +68,13 @@ export class Page extends React.Component {
         <p><s.Input type='text' defaultValue='Custom field' style={s.secondaryColor} /></p>
         <p style={{ lineHeight: 1 }}><label><s.Input type='checkbox' />&nbsp;&nbsp;Checkbox</label></p>
         <p style={{ lineHeight: 1 }}><label><s.Input type='radio' />&nbsp;&nbsp;Radio button</label></p>
+
+        <h3 style={title3}>Validation</h3>
+        <s.Form onSubmit={() => alert('\'onSubmit\' event has been triggered.')} action='javascript:void(0)'>
+          <p><s.Input type='text' required placeholder='Username' /></p>
+          <p><s.Input type='password' required placeholder='Password' /></p>
+          <p><s.Button type='submit' primary>Submit</s.Button></p>
+        </s.Form>
       </div>
     );
   }

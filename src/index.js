@@ -3,8 +3,9 @@
 import Variables from './variables';
 import Elements from './elements';
 import Styles from './styles';
-import buttonComponentCreator from './components/button';
+import formComponentCreator from './components/form';
 import inputComponentCreator from './components/input';
+import buttonComponentCreator from './components/button';
 
 export class RadiumStarter {
   constructor(customVars) {
@@ -19,8 +20,9 @@ export class RadiumStarter {
     let styles = new Styles(vars);
     Object.assign(this, styles);
 
-    this.Button = buttonComponentCreator(vars);
+    this.Form = formComponentCreator(vars);
     this.Input = inputComponentCreator(vars);
+    this.Button = buttonComponentCreator(vars);
   }
 }
 

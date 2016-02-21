@@ -17,8 +17,11 @@ export class Variables {
 
   // --- Colors ---
 
-  @def $primaryColor = '#0275D8'; // blue
-  @def $secondaryColor = '#CB3837'; // red
+  @def $blue = '#0275D8';
+  @def $red = '#CB3837';
+
+  @def $primaryColor = this.$blue;
+  @def $secondaryColor = this.$red;
 
   @def $darkGray = '#373A3C';
   @def $gray = '#55595C';
@@ -28,6 +31,9 @@ export class Variables {
 
   @def $bodyColor = '#373A3C';
   @def $bodyBackgroundColor = '#FFF';
+
+  @def $errorColor = this.$red;
+  @def $warningColor = '#F0AD4E'; // orange
 
   @def $mutedTextColor = this.$lightGray;
 

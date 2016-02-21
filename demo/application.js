@@ -8,7 +8,7 @@ class Application {
   constructor() {
     this.name = 'radium-starter-demo-server';
     this.environment = 'development';
-    this.port = Math.floor(Math.random() * 10000) + 40000;
+    this.port = 12345;
   }
 
   async run() {

@@ -38,6 +38,10 @@ class Elements {
         fontWeight: 'normal'
       },
 
+      'form.submitted input:invalid, form.submitted select:invalid, form.submitted textarea:invalid': {
+        borderColor: `${vars.$errorColor} !important`
+      },
+
       'code, kbd, pre, samp': {
         fontFamily: vars.$monospaceFontFamily
       },

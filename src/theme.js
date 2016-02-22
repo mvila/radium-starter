@@ -85,7 +85,7 @@ export class Theme {
 
   // --- Code ---
 
-  @def codeColor = this.primaryColor;
+  @def codeColor = this.darkPrimaryColor;
   @def codeBackgroundColor = this.altBodyColor;
   @def preColor = this.secondaryTextColor;
 

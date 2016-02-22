@@ -17,6 +17,7 @@ export function Decorator(component, radiumConfig) {
 
   let originalComponentWillMount = component.prototype.componentWillMount;
   component.prototype.componentWillMount = function() {
+    this.Radium = Radium;
     this.theme = this.context.theme;
     this.styles = this.context.styles;
     if (originalComponentWillMount) originalComponentWillMount.call(this);

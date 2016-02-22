@@ -14,7 +14,7 @@ export class Page extends React.Component {
     let { styles: s } = this.context;
 
     let title1 = [
-      s.primaryTextColorForDarkBackground,
+      s.inversePrimaryTextColor,
       s.backgroundPrimaryColor,
       s.regular,
       { padding: '5rem 1.5rem 1rem 1.5rem', marginBottom: '-3rem' }

@@ -18,9 +18,9 @@ class Styles {
       'primaryTextColor',
       'secondaryTextColor',
       'mutedTextColor',
-      'primaryTextColorForDarkBackground',
-      'secondaryTextColorForDarkBackground',
-      'mutedTextColorForDarkBackground',
+      'inversePrimaryTextColor',
+      'inverseSecondaryTextColor',
+      'inverseMutedTextColor',
       'errorColor',
       'warningColor'
     ];

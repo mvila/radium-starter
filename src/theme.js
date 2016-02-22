@@ -27,9 +27,9 @@ export class Theme {
   @def secondaryTextColor = 'rgba(0,0,0,.54)';
   @def mutedTextColor = 'rgba(0,0,0,.38)';
 
-  @def primaryTextColorForDarkBackground = 'rgba(255,255,255,1)';
-  @def secondaryTextColorForDarkBackground = 'rgba(255,255,255,0.7)';
-  @def mutedTextColorForDarkBackground = 'rgba(255,255,255,0.5)';
+  @def inversePrimaryTextColor = 'rgba(255,255,255,1)';
+  @def inverseSecondaryTextColor = 'rgba(255,255,255,0.7)';
+  @def inverseMutedTextColor = 'rgba(255,255,255,0.5)';
 
   @def errorColor = '#F44336'; // Material Design Red 500
   @def warningColor = '#FF9800'; // Material Design Orange 500
@@ -109,13 +109,13 @@ export class Theme {
   @def activeButtonBackgroundColor = this.altBodyColor;
   @def activeButtonBorderColor = this.altBorderColor;
 
-  @def primaryButtonTextColor = this.primaryTextColorForDarkBackground;
+  @def primaryButtonTextColor = this.inversePrimaryTextColor;
   @def primaryButtonBackgroundColor = this.primaryColor;
   @def primaryButtonBorderColor = this.primaryButtonBackgroundColor;
   @def activePrimaryButtonBackgroundColor = this.darkPrimaryColor;
   @def activePrimaryButtonBorderColor = this.activePrimaryButtonBackgroundColor;
 
-  @def accentButtonTextColor = this.primaryTextColorForDarkBackground;
+  @def accentButtonTextColor = this.inversePrimaryTextColor;
   @def accentButtonBackgroundColor = this.accentColor;
   @def accentButtonBorderColor = this.accentButtonBackgroundColor;
   @def activeAccentButtonBackgroundColor = this.darkAccentColor;

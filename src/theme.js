@@ -14,14 +14,14 @@ export class Theme {
 
   @def primaryColor = '#2196F3'; // Material Design Blue 500
   @def accentColor = '#FF5252'; // Material Design Red A200
-  @def backgroundColor = '#FFF';
+  @def bodyColor = '#FFF';
   @def borderColor = 'rgba(0,0,0,.12)';
 
   @def darkPrimaryColor = Color(this.primaryColor).darken(0.3).rgbString();
   @def lightPrimaryColor = Color(this.primaryColor).lighten(0.6).rgbString();
   @def darkAccentColor = Color(this.accentColor).darken(0.4).rgbString();
-  @def darkBackgroundColor = Color(this.backgroundColor).darken(0.1).rgbString();
-  @def darkBorderColor = Color(this.borderColor).opaquer(0.3).rgbString();
+  @def altBodyColor = Color(this.bodyColor).darken(0.03).rgbString();
+  @def altBorderColor = Color(this.borderColor).opaquer(0.3).rgbString();
 
   @def primaryTextColor = 'rgba(0,0,0,.87)';
   @def secondaryTextColor = 'rgba(0,0,0,.54)';
@@ -86,7 +86,7 @@ export class Theme {
   // --- Code ---
 
   @def codeColor = this.primaryColor;
-  @def codeBackgroundColor = this.darkBackgroundColor;
+  @def codeBackgroundColor = this.altBodyColor;
   @def preColor = this.secondaryTextColor;
 
   // --- Buttons ---
@@ -104,10 +104,10 @@ export class Theme {
   @def largeButtonYPadding = '.75rem';
 
   @def buttonTextColor = this.primaryTextColor;
-  @def buttonBackgroundColor = this.backgroundColor;
+  @def buttonBackgroundColor = this.bodyColor;
   @def buttonBorderColor = this.borderColor;
-  @def activeButtonBackgroundColor = this.darkBackgroundColor;
-  @def activeButtonBorderColor = this.darkBorderColor;
+  @def activeButtonBackgroundColor = this.altBodyColor;
+  @def activeButtonBorderColor = this.altBorderColor;
 
   @def primaryButtonTextColor = this.primaryTextColorForDarkBackground;
   @def primaryButtonBackgroundColor = this.primaryColor;
@@ -128,7 +128,7 @@ export class Theme {
 
   @def inputLineHeight = 1.25;
   @def inputTextColor = this.primaryTextColor;
-  @def inputBackgroundColor = this.backgroundColor;
+  @def inputBackgroundColor = this.bodyColor;
   @def inputBorderWidth = this.borderWidth;
   @def inputBorderColor = this.borderColor;
   @def inputBoxShadow = `inset 0 1px 1px ${Color(this.inputBorderColor).clearer(0.4).rgbString()}`;
@@ -137,7 +137,7 @@ export class Theme {
   @def focusedInputBorderColor = this.primaryColor;
   @def focusedInputBoxShadowColor = Color(this.focusedInputBorderColor).clearer(0.4).rgbString();
 
-  @def disabledInputBackgroundColor = this.darkBackgroundColor;
+  @def disabledInputBackgroundColor = this.altBodyColor;
 
   @def inputXPadding = '.625rem'; // was '.75rem' in Bootstrap 4
   @def inputYPadding = '.5rem';

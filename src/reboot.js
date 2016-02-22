@@ -25,7 +25,7 @@ class Reboot {
         fontSize: theme.baseFontSize,
         lineHeight: theme.baseLineHeight,
         color: theme.primaryTextColor,
-        backgroundColor: theme.backgroundColor
+        backgroundColor: theme.bodyColor
       },
 
       '[tabindex="-1"]:focus': {

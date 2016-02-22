@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "color": "^0.11.1",
+    "event-emitter-mixin": "^0.3.1",
     "lodash": "^4.5.0",
     "radium-normalize": "^1.0.2",
     "reduce-css-calc": "^1.2.0"

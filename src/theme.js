@@ -1,13 +1,12 @@
 'use strict';
 
+import EventEmitterMixin from 'event-emitter-mixin';
 import Color from 'color';
 
-export class Theme {
+export class Theme extends EventEmitterMixin() {
   constructor(customAttributes = {}) {
-    for (let key of Object.keys(customAttributes)) {
-      let value = customAttributes[key];
-      Object.defineProperty(this, key, { value });
-    }
+    super();
+    this.customAttributes = customAttributes;
   }
 
   // --- Base colors ---
@@ -23,13 +22,15 @@ export class Theme {
   @def altBodyColor = Color(this.bodyColor).darken(0.03).rgbString();
   @def altBorderColor = Color(this.borderColor).opaquer(0.3).rgbString();
 
-  @def primaryTextColor = 'rgba(0,0,0,.87)';
-  @def secondaryTextColor = 'rgba(0,0,0,.54)';
-  @def mutedTextColor = 'rgba(0,0,0,.38)';
+  @def baseTextColor = '#000';
+  @def primaryTextColor = Color(this.baseTextColor).alpha(0.87).rgbString();
+  @def secondaryTextColor = Color(this.baseTextColor).alpha(0.54).rgbString();
+  @def mutedTextColor = Color(this.baseTextColor).alpha(0.38).rgbString();
 
-  @def inversePrimaryTextColor = 'rgba(255,255,255,1)';
-  @def inverseSecondaryTextColor = 'rgba(255,255,255,0.7)';
-  @def inverseMutedTextColor = 'rgba(255,255,255,0.5)';
+  @def baseInverseTextColor = '#FFF';
+  @def inversePrimaryTextColor = Color(this.baseInverseTextColor).alpha(1).rgbString();
+  @def inverseSecondaryTextColor = Color(this.baseInverseTextColor).alpha(0.7).rgbString();
+  @def inverseMutedTextColor = Color(this.baseInverseTextColor).alpha(0.5).rgbString();;
 
   @def errorColor = '#F44336'; // Material Design Red 500
   @def warningColor = '#FF9800'; // Material Design Orange 500
@@ -122,7 +123,7 @@ export class Theme {
   @def activeAccentButtonBorderColor = this.activeAccentButtonBackgroundColor;
 
   @def buttonBoxShadow = 'inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075)';
-  @def activeButtonBoxShadow = `inset 0 3px 5px ${this.buttonBorderColor}`;
+  @def activeButtonBoxShadow = `inset 0 1px 2px ${this.buttonBorderColor}`;
 
   // --- Inputs ---
 
@@ -164,7 +165,18 @@ function def(target, name, descriptor) {
   delete descriptor.initializer;
   delete descriptor.writable;
   descriptor.get = function() {
-    return initializer.call(this);
+    if (this.customAttributes.hasOwnProperty(name)) {
+      let value = this.customAttributes[name];
+      if (typeof value === 'function') value = value(this);
+      return value;
+    } else {
+      return initializer.call(this);
+    }
+  };
+  descriptor.set = function(value) {
+    this.customAttributes[name] = value;
+    this.emit('didChange');
+    return value;
   };
 }
 

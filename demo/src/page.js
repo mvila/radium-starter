@@ -6,11 +6,20 @@ import { Form, Input, Button } from '../../src';
 
 @Radium
 export class Page extends React.Component {
+  static propTypes = {
+    app: React.PropTypes.object.isRequired
+  };
+
   static contextTypes = {
     styles: React.PropTypes.object.isRequired
   };
 
+  switchTheme(event) {
+    this.props.app.switchTheme(event.target.value);
+  }
+
   render() {
+    let app = this.props.app;
     let { styles: s } = this.context;
 
     let title1 = [
@@ -30,7 +39,7 @@ export class Page extends React.Component {
 
     return (
       <div style={{ margin: '1.5rem auto', width: 800 }}>
-        <h1 style={title1}>Radium Starter Demo</h1>
+        <h1 style={title1}>{app.displayName}</h1>
 
         <h2 style={title2}>Layout</h2>
 
@@ -87,6 +96,10 @@ export class Page extends React.Component {
           <p><Input type='password' required placeholder='Password' /></p>
           <p><Button type='submit' primary>Submit</Button></p>
         </Form>
+
+        <h2 style={title2}>Dynamic theming</h2>
+        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='default' checked={app.themeName === 'default'} onChange={::this.switchTheme} />&nbsp;&nbsp;Default theme</label></p>
+        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='inverse' checked={app.themeName === 'inverse'} onChange={::this.switchTheme} />&nbsp;&nbsp;Inverse theme</label></p>
       </div>
     );
   }

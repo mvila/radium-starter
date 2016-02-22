@@ -1,17 +1,12 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
-import { Form, Input, Button } from '../../src';
+import { RadiumStarter, Form, Input, Button } from '../../src';
 
-@Radium
+@RadiumStarter
 export class Page extends React.Component {
   static propTypes = {
     app: React.PropTypes.object.isRequired
-  };
-
-  static contextTypes = {
-    styles: React.PropTypes.object.isRequired
   };
 
   switchTheme(event) {
@@ -20,7 +15,7 @@ export class Page extends React.Component {
 
   render() {
     let app = this.props.app;
-    let { styles: s } = this.context;
+    let s = this.styles;
 
     let title1 = [
       s.inversePrimaryTextColor,

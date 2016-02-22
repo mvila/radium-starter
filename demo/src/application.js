@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import pick from 'lodash/pick';
-import { RadiumStarter, Theme } from '../../src';
+import { RadiumStarterRoot, Theme } from '../../src';
 import Page from './page';
 
 class Application {
@@ -41,7 +41,9 @@ class Application {
 
   run() {
     ReactDOM.render(
-      <RadiumStarter theme={this.theme}><Page app={this} /></RadiumStarter>,
+      <RadiumStarterRoot theme={this.theme}>
+        <Page app={this} />
+      </RadiumStarterRoot>,
       document.getElementById('root')
     );
   }

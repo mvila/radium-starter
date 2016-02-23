@@ -18,6 +18,34 @@ export class Input extends React.Component {
     theme: React.PropTypes.object.isRequired
   };
 
+  blur() {
+    this.domElement.blur();
+  }
+
+  checkValidity() {
+    return this.domElement.checkValidity();
+  }
+
+  click() {
+    this.domElement.click();
+  }
+
+  focus() {
+    this.domElement.focus();
+  }
+
+  select() {
+    this.domElement.select();
+  }
+
+  setCustomValidity(error) {
+    this.domElement.setCustomValidity(error);
+  }
+
+  setRangeText(...args) {
+    this.domElement.setRangeText.apply(this, args);
+  }
+
   render() {
     let { theme } = this.context;
 
@@ -75,7 +103,7 @@ export class Input extends React.Component {
     style = [style, this.props.style];
 
     let props = omit(this.props, ['small', 'large', 'style']);
-    return <input style={style} {...props} />;
+    return <input style={style} {...props} ref={element => this.domElement = element}/>;
   }
 }
 

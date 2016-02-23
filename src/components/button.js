@@ -19,6 +19,26 @@ export class Button extends React.Component {
     theme: React.PropTypes.object.isRequired
   };
 
+  blur() {
+    this.domElement.blur();
+  }
+
+  checkValidity() {
+    return this.domElement.checkValidity();
+  }
+
+  click() {
+    this.domElement.click();
+  }
+
+  focus() {
+    this.domElement.focus();
+  }
+
+  setCustomValidity(error) {
+    this.domElement.setCustomValidity(error);
+  }
+
   render() {
     let { theme } = this.context;
 
@@ -120,7 +140,7 @@ export class Button extends React.Component {
     style = [style, this.props.style];
 
     let props = omit(this.props, ['small', 'large', 'primary', 'accent', 'style']);
-    return <button style={style} {...props} />;
+    return <button style={style} {...props} ref={element => this.domElement = element} />;
   }
 }
 

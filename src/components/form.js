@@ -11,7 +11,23 @@ export class Form extends React.Component {
     this.state = { submitted: false };
   }
 
-  submit(event) {
+  checkValidity() {
+    return this.domElement.checkValidity();
+  }
+
+  submit() {
+    this.domElement.submit();
+  }
+
+  reset() {
+    this.domElement.reset();
+  }
+
+  reportValidity() {
+    return this.domElement.reportValidity();
+  }
+
+  handleOnSubmit(event) {
     if (!this.state.submitted) this.setState({ submitted: true });
     if (event.target.checkValidity) {
       if (!event.target.checkValidity()) { // For Safari
@@ -26,7 +42,7 @@ export class Form extends React.Component {
     let props = clone(this.props);
 
     if (props.onSubmit) this.originalOnSubmit = props.onSubmit;
-    props.onSubmit = this.submit.bind(this);
+    props.onSubmit = this.handleOnSubmit.bind(this);
 
     if (this.state.submitted) {
       let className = props.className || '';
@@ -35,7 +51,7 @@ export class Form extends React.Component {
       props.className = className;
     }
 
-    return <form {...props} />;
+    return <form {...props} ref={element => this.domElement = element} />;
   }
 }
 

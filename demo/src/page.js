@@ -96,8 +96,8 @@ export class Page extends React.Component {
         <p><Input type='text' readOnly defaultValue='Read only field' /></p>
         <p><Input type='text' placeholder='Placeholder' /></p>
         <p><Input type='text' defaultValue='Custom field' style={s.primaryColor} /></p>
-        <p style={{ lineHeight: 1 }}><label><Input type='checkbox' />&nbsp;&nbsp;Checkbox</label></p>
-        <p style={{ lineHeight: 1 }}><label><Input type='radio' />&nbsp;&nbsp;Radio button</label></p>
+        <p style={{ lineHeight: 1 }}><label><Input type='checkbox' />&nbsp;Checkbox</label></p>
+        <p style={{ lineHeight: 1 }}><label><Input type='radio' />&nbsp;Radio button</label></p>
 
         <h3 style={title3}>Validation</h3>
         <Form onSubmit={() => alert('\'onSubmit\' event has been triggered.')} action='javascript:void(0)'>
@@ -107,8 +107,8 @@ export class Page extends React.Component {
         </Form>
 
         <h2 style={title2}>Dynamic theming</h2>
-        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='default' checked={app.themeName === 'default'} onChange={::this.switchTheme} />&nbsp;&nbsp;Default theme</label></p>
-        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='inverse' checked={app.themeName === 'inverse'} onChange={::this.switchTheme} />&nbsp;&nbsp;Inverse theme</label></p>
+        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='default' checked={app.themeName === 'default'} onChange={::this.switchTheme} />&nbsp;Default theme</label></p>
+        <p style={{ lineHeight: 1 }}><label><Input type='radio' value='inverse' checked={app.themeName === 'inverse'} onChange={::this.switchTheme} />&nbsp;Inverse theme</label></p>
       </div>
     );
   }

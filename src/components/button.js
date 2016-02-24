@@ -110,7 +110,6 @@ export class Button extends React.Component {
       borderStyle: 'solid',
       borderColor,
       borderRadius,
-      boxShadow: theme.buttonBoxShadow,
       transition: 'all .2s ease-in-out',
       cursor: 'pointer',
       userSelect: 'none'
@@ -133,15 +132,13 @@ export class Button extends React.Component {
           color,
           backgroundColor: activeBackgroundColor,
           borderColor: activeBorderColor,
-          backgroundImage: 'none',
-          boxShadow: theme.activeButtonBoxShadow
+          backgroundImage: 'none'
         }
       });
     } else {
       Object.assign(style, {
         cursor: theme.disabledCursor,
         opacity: 0.5,
-        boxShadow: 'none',
         ':hover': {},
         ':focus': {},
         ':active': {}

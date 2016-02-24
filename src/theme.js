@@ -125,9 +125,6 @@ export class Theme extends EventEmitterMixin() {
   @def activeAccentButtonBackgroundColor = this.darkAccentColor;
   @def activeAccentButtonBorderColor = this.activeAccentButtonBackgroundColor;
 
-  @def buttonBoxShadow = 'inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075)';
-  @def activeButtonBoxShadow = `inset 0 1px 2px ${this.buttonBorderColor}`;
-
   // --- Inputs ---
 
   @def inputLineHeight = 1.25;
@@ -135,11 +132,9 @@ export class Theme extends EventEmitterMixin() {
   @def inputBackgroundColor = this.bodyColor;
   @def inputBorderWidth = this.borderWidth;
   @def inputBorderColor = this.borderColor;
-  @def inputBoxShadow = `inset 0 1px 1px ${Color(this.inputBorderColor).clearer(0.4).rgbString()}`;
   @def inputPlaceholderColor = this.mutedTextColor;
 
   @def focusedInputBorderColor = this.primaryColor;
-  @def focusedInputBoxShadowColor = Color(this.focusedInputBorderColor).clearer(0.4).rgbString();
 
   @def disabledInputBackgroundColor = this.altBodyColor;
 

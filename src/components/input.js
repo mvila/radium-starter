@@ -12,7 +12,8 @@ export class Input extends React.Component {
     disabled: React.PropTypes.bool,
     readonly: React.PropTypes.bool,
     style: React.PropTypes.object,
-    autoSelect: React.PropTypes.bool
+    autoSelect: React.PropTypes.bool,
+    customValidity: React.PropTypes.string
   };
 
   static contextTypes = {
@@ -21,6 +22,20 @@ export class Input extends React.Component {
 
   componentDidMount() {
     if (this.props.autoSelect) this.select();
+    this.updateCustomValidity(this.props.customValidity);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateCustomValidity(nextProps.customValidity);
+  }
+
+  updateCustomValidity(value) {
+    if (value != null) {
+      if (value !== this._previousCustomValidity) {
+        this.domElement.setCustomValidity(value);
+        this._previousCustomValidity = value;
+      }
+    }
   }
 
   get checked() {
@@ -143,8 +158,24 @@ export class Input extends React.Component {
 
     style = [style, this.props.style];
 
-    let props = omit(this.props, ['small', 'large', 'style', 'autoSelect']);
-    return <input style={style} {...props} ref={element => this.domElement = element}/>;
+    let validationMessage;
+    if (this.domElement && this.domElement.validity && this.domElement.validity.customError) {
+      if (this.domElement.form) {
+        let classNames = this.domElement.form.className.split(' ');
+        if (classNames.includes('submitted')) {
+          validationMessage = this.domElement.validationMessage;
+        }
+      }
+    }
+
+    let props = omit(this.props, ['small', 'large', 'style', 'autoSelect', 'customValidity']);
+    return ( // TODO: use a tooltip to display the validation message
+      <span>
+        <input style={style} {...props} ref={element => this.domElement = element}/>
+        {' '}
+        <span>{validationMessage}</span>
+      </span>
+    );
   }
 }
 

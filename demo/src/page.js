@@ -9,6 +9,11 @@ export class Page extends React.Component {
     app: React.PropTypes.object.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { password: '' };
+  }
+
   switchTheme(event) {
     this.props.app.switchTheme(event.target.value);
   }
@@ -31,6 +36,15 @@ export class Page extends React.Component {
       s.secondaryTextColor,
       { marginTop: '2rem', marginBottom: '1rem' }
     ];
+
+    let passwordCustomValidity;
+    if (!this.state.password) {
+      passwordCustomValidity = 'Please fill out this field.';
+    } else if (this.state.password.length < 8) {
+      passwordCustomValidity = 'Use at least 8 characters.';
+    } else {
+      passwordCustomValidity = '';
+    }
 
     return (
       <div style={{ margin: '1.5rem auto', width: 800 }}>
@@ -88,7 +102,7 @@ export class Page extends React.Component {
         <h3 style={title3}>Validation</h3>
         <Form onSubmit={() => alert('\'onSubmit\' event has been triggered.')} action='javascript:void(0)'>
           <p><Input type='text' required placeholder='Username' /></p>
-          <p><Input type='password' required placeholder='Password' /></p>
+          <p><Input type='password' value={this.state.password} onChange={(event) => this.setState({ password: event.target.value })} customValidity={passwordCustomValidity} placeholder='Password' /></p>
           <p><Button type='submit' primary>Submit</Button></p>
         </Form>
 

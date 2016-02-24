@@ -11,12 +11,17 @@ export class Input extends React.Component {
     large: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     readonly: React.PropTypes.bool,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
+    autoSelect: React.PropTypes.bool
   };
 
   static contextTypes = {
     theme: React.PropTypes.object.isRequired
   };
+
+  componentDidMount() {
+    if (this.props.autoSelect) this.select();
+  }
 
   blur() {
     this.domElement.blur();
@@ -102,7 +107,7 @@ export class Input extends React.Component {
 
     style = [style, this.props.style];
 
-    let props = omit(this.props, ['small', 'large', 'style']);
+    let props = omit(this.props, ['small', 'large', 'style', 'autoSelect']);
     return <input style={style} {...props} ref={element => this.domElement = element}/>;
   }
 }

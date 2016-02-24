@@ -6,6 +6,9 @@ import Color from 'color';
 export class Theme extends EventEmitterMixin() {
   constructor(customAttributes = {}) {
     super();
+    if (typeof customAttributes === 'function') {
+      customAttributes = customAttributes(this);
+    }
     this.customAttributes = customAttributes;
   }
 
@@ -165,7 +168,7 @@ function def(target, name, descriptor) {
   delete descriptor.initializer;
   delete descriptor.writable;
   descriptor.get = function() {
-    if (this.customAttributes.hasOwnProperty(name)) {
+    if (this.customAttributes && this.customAttributes.hasOwnProperty(name)) {
       let value = this.customAttributes[name];
       if (typeof value === 'function') value = value(this);
       return value;

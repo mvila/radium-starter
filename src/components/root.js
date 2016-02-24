@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { StyleRoot, Style } from 'radium';
+import clone from 'lodash/clone';
 import mergeWith from 'lodash/mergeWith';
 import debounce from 'lodash/debounce';
 import Theme from '../theme';
@@ -10,8 +11,14 @@ import Styles from '../styles';
 
 export class RadiumStarterRoot extends React.Component {
   static propTypes = {
-    theme: React.PropTypes.object,
-    styles: React.PropTypes.object,
+    theme: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.func
+    ]),
+    styles: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.func
+    ]),
     children: React.PropTypes.node.isRequired
   };
 
@@ -55,17 +62,31 @@ export class RadiumStarterRoot extends React.Component {
     this.elements = new Elements(this.state.theme);
 
     this.styles = new Styles(this.state.theme);
-    mergeWith(this.styles, this.props.styles, function(objValue, srcValue) {
-      let objValueIsArray = Array.isArray(objValue);
-      let srcValueIsArray = Array.isArray(srcValue);
-      if (objValueIsArray || srcValueIsArray) {
-        if (!objValueIsArray) objValue = [objValue];
-        if (!srcValueIsArray) srcValue = [srcValue];
-        return objValue.concat(srcValue);
+    if (this.props.styles) {
+      let customStyles = this.props.styles;
+      if (typeof customStyles === 'function') {
+        customStyles = customStyles(this.state.theme, this.styles);
       } else {
-        return undefined;
+        customStyles = clone(customStyles);
       }
-    });
+      for (let key of Object.keys(customStyles)) {
+        let value = customStyles[key];
+        if (typeof value === 'function') {
+          customStyles[key] = value(this.state.theme, this.styles);
+        }
+      }
+      mergeWith(this.styles, customStyles, (objValue, srcValue) => {
+        let objValueIsArray = Array.isArray(objValue);
+        let srcValueIsArray = Array.isArray(srcValue);
+        if (objValueIsArray || srcValueIsArray) {
+          if (!objValueIsArray) objValue = [objValue];
+          if (!srcValueIsArray) srcValue = [srcValue];
+          return objValue.concat(srcValue);
+        } else {
+          return undefined;
+        }
+      });
+    }
   }
 
   render() {

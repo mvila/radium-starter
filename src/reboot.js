@@ -42,6 +42,10 @@ class Reboot {
         marginBottom: '1rem'
       },
 
+      small: {
+        fontSize: '87.5%' // Was '80%' in radium-normalize
+      },
+
       address: {
         marginBottom: '1rem',
         fontStyle: 'normal',

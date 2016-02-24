@@ -19,6 +19,17 @@ export class Button extends React.Component {
     theme: React.PropTypes.object.isRequired
   };
 
+  get validity() {
+    return this.domElement.validity;
+  }
+
+  get value() {
+    return this.domElement.value;
+  }
+  set value(val) {
+    return this.domElement.value = val;
+  }
+
   blur() {
     this.domElement.blur();
   }

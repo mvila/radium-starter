@@ -23,6 +23,42 @@ export class Input extends React.Component {
     if (this.props.autoSelect) this.select();
   }
 
+  get checked() {
+    return this.domElement.checked;
+  }
+  set checked(val) {
+    return this.domElement.checked = val;
+  }
+
+  get files() {
+    return this.domElement.files;
+  }
+
+  get validity() {
+    return this.domElement.validity;
+  }
+
+  get value() {
+    return this.domElement.value;
+  }
+  set value(val) {
+    return this.domElement.value = val;
+  }
+
+  get valueAsDate() {
+    return this.domElement.valueAsDate;
+  }
+  set valueAsDate(val) {
+    return this.domElement.valueAsDate = val;
+  }
+
+  get valueAsNumber() {
+    return this.domElement.valueAsNumber;
+  }
+  set valueAsNumber(val) {
+    return this.domElement.valueAsNumber = val;
+  }
+
   blur() {
     this.domElement.blur();
   }

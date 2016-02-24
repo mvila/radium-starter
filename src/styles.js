@@ -41,6 +41,10 @@ class Styles {
       marginLeft: 0
     };
 
+    this.minimumLineHeight = {
+      lineHeight: 1
+    };
+
     this.regular = {
       fontWeight: 'normal'
     };
@@ -55,6 +59,18 @@ class Styles {
 
     this.mutedText = {
       color: theme.mutedTextColor
+    };
+
+    this.baseFontSize = {
+      fontSize: theme.baseFontSize
+    };
+
+    this.smallFontSize = {
+      fontSize: theme.smallFontSize
+    };
+
+    this.largeFontSize = {
+      fontSize: theme.largeFontSize
     };
 
     this.border = {

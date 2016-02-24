@@ -11,6 +11,13 @@ export class Form extends React.Component {
     this.state = { submitted: false };
   }
 
+  get submitted() {
+    return this.state.submitted;
+  }
+  set submitted(value) {
+    this.setState({ submitted: value });
+  }
+
   checkValidity() {
     return this.domElement.checkValidity();
   }
@@ -28,7 +35,7 @@ export class Form extends React.Component {
   }
 
   handleOnSubmit(event) {
-    if (!this.state.submitted) this.setState({ submitted: true });
+    if (!this.submitted) this.submitted = true;
     if (event.target.checkValidity) {
       if (!event.target.checkValidity()) { // For Safari
         event.preventDefault();
@@ -44,7 +51,7 @@ export class Form extends React.Component {
     if (props.onSubmit) this.originalOnSubmit = props.onSubmit;
     props.onSubmit = this.handleOnSubmit.bind(this);
 
-    if (this.state.submitted) {
+    if (this.submitted) {
       let className = props.className || '';
       if (className) className += ' ';
       className += 'submitted';

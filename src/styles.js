@@ -112,10 +112,12 @@ class Styles {
       listStyle: 'none'
     };
 
-    this.hiddenIfSmall = {
-      [`@media (max-width: ${theme.smallBreakpoint})`]: {
-        display: 'none'
-      }
+    this.shownIf = function(condition) {
+      return !condition ? { display: 'none' } : undefined;
+    };
+
+    this.hiddenIf = function(condition) {
+      return this.shownIf(!condition);
     };
 
     let smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
@@ -125,8 +127,8 @@ class Styles {
       }
     };
 
-    this.hiddenIfMedium = {
-      [`@media (max-width: ${theme.mediumBreakpoint})`]: {
+    this.hiddenIfSmall = {
+      [`@media (max-width: ${theme.smallBreakpoint})`]: {
         display: 'none'
       }
     };
@@ -138,8 +140,8 @@ class Styles {
       }
     };
 
-    this.hiddenIfLarge = {
-      [`@media (max-width: ${theme.largeBreakpoint})`]: {
+    this.hiddenIfMedium = {
+      [`@media (max-width: ${theme.mediumBreakpoint})`]: {
         display: 'none'
       }
     };
@@ -147,6 +149,12 @@ class Styles {
     let largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
     this.shownIfLarge = {
       [`@media (min-width: ${largePlusOne})`]: {
+        display: 'none'
+      }
+    };
+
+    this.hiddenIfLarge = {
+      [`@media (max-width: ${theme.largeBreakpoint})`]: {
         display: 'none'
       }
     };

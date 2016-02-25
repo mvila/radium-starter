@@ -71,25 +71,25 @@ export class Button extends React.Component {
       borderRadius = theme.borderRadius;
     }
 
-    let color, backgroundColor, borderColor, activeBackgroundColor, activeBorderColor;
+    let color, backgroundColor, borderColor, hoveredBackgroundColor, hoveredBorderColor;
     if (this.props.primary) {
       color = theme.primaryButtonTextColor;
       backgroundColor = theme.primaryButtonBackgroundColor;
       borderColor = theme.primaryButtonBorderColor;
-      activeBackgroundColor = theme.activePrimaryButtonBackgroundColor;
-      activeBorderColor = theme.activePrimaryButtonBorderColor;
+      hoveredBackgroundColor = theme.hoveredPrimaryButtonBackgroundColor;
+      hoveredBorderColor = theme.hoveredPrimaryButtonBorderColor;
     } else if (this.props.accent) {
       color = theme.accentButtonTextColor;
       backgroundColor = theme.accentButtonBackgroundColor;
       borderColor = theme.accentButtonBorderColor;
-      activeBackgroundColor = theme.activeAccentButtonBackgroundColor;
-      activeBorderColor = theme.activeAccentButtonBorderColor;
+      hoveredBackgroundColor = theme.hoveredAccentButtonBackgroundColor;
+      hoveredBorderColor = theme.hoveredAccentButtonBorderColor;
     } else {
       color = theme.buttonTextColor;
       backgroundColor = theme.buttonBackgroundColor;
       borderColor = theme.buttonBorderColor;
-      activeBackgroundColor = theme.activeButtonBackgroundColor;
-      activeBorderColor = theme.activeButtonBorderColor;
+      hoveredBackgroundColor = theme.hoveredButtonBackgroundColor;
+      hoveredBorderColor = theme.hoveredButtonBorderColor;
     }
 
     let style = {
@@ -120,8 +120,8 @@ export class Button extends React.Component {
       Object.assign(style, {
         ':hover': {
           color,
-          backgroundColor: activeBackgroundColor,
-          borderColor: activeBorderColor
+          backgroundColor: hoveredBackgroundColor,
+          borderColor: hoveredBorderColor
         }
       });
     } else {

@@ -110,20 +110,20 @@ export class Theme extends EventEmitterMixin() {
   @def buttonTextColor = this.primaryTextColor;
   @def buttonBackgroundColor = this.bodyColor;
   @def buttonBorderColor = this.borderColor;
-  @def activeButtonBackgroundColor = this.altBodyColor;
-  @def activeButtonBorderColor = this.altBorderColor;
+  @def hoveredButtonBackgroundColor = this.altBodyColor;
+  @def hoveredButtonBorderColor = this.altBorderColor;
 
   @def primaryButtonTextColor = this.inversePrimaryTextColor;
   @def primaryButtonBackgroundColor = this.primaryColor;
   @def primaryButtonBorderColor = this.primaryButtonBackgroundColor;
-  @def activePrimaryButtonBackgroundColor = this.darkPrimaryColor;
-  @def activePrimaryButtonBorderColor = this.activePrimaryButtonBackgroundColor;
+  @def hoveredPrimaryButtonBackgroundColor = this.darkPrimaryColor;
+  @def hoveredPrimaryButtonBorderColor = this.hoveredPrimaryButtonBackgroundColor;
 
   @def accentButtonTextColor = this.inversePrimaryTextColor;
   @def accentButtonBackgroundColor = this.accentColor;
   @def accentButtonBorderColor = this.accentButtonBackgroundColor;
-  @def activeAccentButtonBackgroundColor = this.darkAccentColor;
-  @def activeAccentButtonBorderColor = this.activeAccentButtonBackgroundColor;
+  @def hoveredAccentButtonBackgroundColor = this.darkAccentColor;
+  @def hoveredAccentButtonBorderColor = this.hoveredAccentButtonBackgroundColor;
 
   // --- Inputs ---
 

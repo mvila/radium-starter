@@ -80,8 +80,8 @@ class Reboot {
       },
 
       'a:hover': {
-        color: theme.linkHoverColor,
-        textDecoration: theme.linkHoverDecoration
+        color: theme.hoveredLinkColor,
+        textDecoration: theme.hoveredLinkDecoration
       },
 
       'a:focus': {

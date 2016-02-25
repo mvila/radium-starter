@@ -42,8 +42,8 @@ export class Theme extends EventEmitterMixin() {
 
   @def linkColor = this.accentColor;
   @def linkDecoration = 'none';
-  @def linkHoverColor = this.darkAccentColor;
-  @def linkHoverDecoration = 'underline';
+  @def hoveredLinkColor = this.darkAccentColor;
+  @def hoveredLinkDecoration = 'underline';
 
   // --- Typography ---
 

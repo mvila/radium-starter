@@ -80,18 +80,18 @@ export class Page extends React.Component {
         <h2 style={title2}>Forms</h2>
 
         <h3 style={title3}>Buttons</h3>
-        <p><Button small>Small button</Button></p>
+        <p><Button rsSmall>Small button</Button></p>
         <p><Button>Normal button</Button></p>
-        <p><Button large>Large button</Button></p>
-        <p><Button primary>Primary button</Button></p>
-        <p><Button accent>Accent button</Button></p>
+        <p><Button rsLarge>Large button</Button></p>
+        <p><Button rsPrimary>Primary button</Button></p>
+        <p><Button rsAccent>Accent button</Button></p>
         <p><Button disabled>Disabled button</Button></p>
         <p><Button style={[s.primaryColor, { textTransform: 'uppercase' }]}>Custom button</Button></p>
 
         <h3 style={title3}>Inputs</h3>
-        <p><Input type='text' small defaultValue='Small field' /></p>
+        <p><Input type='text' rsSmall defaultValue='Small field' /></p>
         <p><Input type='text' defaultValue='Normal field' /></p>
-        <p><Input type='text' large defaultValue='Large field' /></p>
+        <p><Input type='text' rsLarge defaultValue='Large field' /></p>
         <p><Input type='text' disabled defaultValue='Disabled field' /></p>
         <p><Input type='text' readOnly defaultValue='Read only field' /></p>
         <p><Input type='text' placeholder='Placeholder' /></p>
@@ -102,8 +102,8 @@ export class Page extends React.Component {
         <h3 style={title3}>Validation</h3>
         <Form onSubmit={() => alert('\'onSubmit\' event has been triggered.')} action='javascript:void(0)'>
           <p><Input type='text' required placeholder='Username' /></p>
-          <p><Input type='password' value={this.state.password} onChange={(event) => this.setState({ password: event.target.value })} customValidity={passwordCustomValidity} placeholder='Password' /></p>
-          <p><Button type='submit' primary>Submit</Button></p>
+          <p><Input type='password' value={this.state.password} onChange={(event) => this.setState({ password: event.target.value })} rsCustomValidity={passwordCustomValidity} placeholder='Password' /></p>
+          <p><Button type='submit' rsPrimary>Submit</Button></p>
         </Form>
 
         <h2 style={title2}>Dynamic theming</h2>

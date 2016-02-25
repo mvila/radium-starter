@@ -7,13 +7,13 @@ import omit from 'lodash/omit';
 @Radium
 export class Input extends React.Component {
   static propTypes = {
-    small: React.PropTypes.bool,
-    large: React.PropTypes.bool,
+    rsSmall: React.PropTypes.bool,
+    rsLarge: React.PropTypes.bool,
+    rsAutoSelect: React.PropTypes.bool,
+    rsCustomValidity: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     readonly: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    autoSelect: React.PropTypes.bool,
-    customValidity: React.PropTypes.string
+    style: React.PropTypes.object
   };
 
   static contextTypes = {
@@ -21,12 +21,12 @@ export class Input extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.autoSelect) this.select();
-    this.updateCustomValidity(this.props.customValidity);
+    if (this.props.rsAutoSelect) this.select();
+    this.updateCustomValidity(this.props.rsCustomValidity);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.updateCustomValidity(nextProps.customValidity);
+    this.updateCustomValidity(nextProps.rsCustomValidity);
   }
 
   updateCustomValidity(value) {
@@ -106,12 +106,12 @@ export class Input extends React.Component {
     let { theme } = this.context;
 
     let xPadding, yPadding, fontSize, borderRadius;
-    if (this.props.small) {
+    if (this.props.rsSmall) {
       xPadding = theme.smallInputXPadding;
       yPadding = theme.smallInputYPadding;
       fontSize = theme.smallFontSize;
       borderRadius = theme.smallBorderRadius;
-    } else if (this.props.large) {
+    } else if (this.props.rsLarge) {
       xPadding = theme.largeInputXPadding;
       yPadding = theme.largeInputYPadding;
       fontSize = theme.largeFontSize;
@@ -166,7 +166,7 @@ export class Input extends React.Component {
       }
     }
 
-    let props = omit(this.props, ['small', 'large', 'style', 'autoSelect', 'customValidity']);
+    let props = omit(this.props, ['rsSmall', 'rsLarge', 'rsAutoSelect', 'rsCustomValidity', 'style']);
     return ( // TODO: use a tooltip to display the validation message
       <span>
         <input style={style} {...props} ref={element => this.domElement = element}/>

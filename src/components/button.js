@@ -7,10 +7,10 @@ import omit from 'lodash/omit';
 @Radium
 export class Button extends React.Component {
   static propTypes = {
-    small: React.PropTypes.bool,
-    large: React.PropTypes.bool,
-    primary: React.PropTypes.bool,
-    accent: React.PropTypes.bool,
+    rsSmall: React.PropTypes.bool,
+    rsLarge: React.PropTypes.bool,
+    rsPrimary: React.PropTypes.bool,
+    rsAccent: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     style: React.PropTypes.object
   };
@@ -54,12 +54,12 @@ export class Button extends React.Component {
     let { theme } = this.context;
 
     let xPadding, yPadding, fontSize, borderRadius;
-    if (this.props.small) {
+    if (this.props.rsSmall) {
       xPadding = theme.smallButtonXPadding;
       yPadding = theme.smallButtonYPadding;
       fontSize = theme.smallFontSize;
       borderRadius = theme.smallBorderRadius;
-    } else if (this.props.large) {
+    } else if (this.props.rsLarge) {
       xPadding = theme.largeButtonXPadding;
       yPadding = theme.largeButtonYPadding;
       fontSize = theme.largeFontSize;
@@ -72,13 +72,13 @@ export class Button extends React.Component {
     }
 
     let color, backgroundColor, borderColor, hoveredBackgroundColor, hoveredBorderColor;
-    if (this.props.primary) {
+    if (this.props.rsPrimary) {
       color = theme.primaryButtonTextColor;
       backgroundColor = theme.primaryButtonBackgroundColor;
       borderColor = theme.primaryButtonBorderColor;
       hoveredBackgroundColor = theme.hoveredPrimaryButtonBackgroundColor;
       hoveredBorderColor = theme.hoveredPrimaryButtonBorderColor;
-    } else if (this.props.accent) {
+    } else if (this.props.rsAccent) {
       color = theme.accentButtonTextColor;
       backgroundColor = theme.accentButtonBackgroundColor;
       borderColor = theme.accentButtonBorderColor;
@@ -134,7 +134,7 @@ export class Button extends React.Component {
 
     style = [style, this.props.style];
 
-    let props = omit(this.props, ['small', 'large', 'primary', 'accent', 'style']);
+    let props = omit(this.props, ['rsSmall', 'rsLarge', 'rsPrimary', 'rsAccent', 'style']);
     return <button style={style} {...props} ref={element => this.domElement = element} />;
   }
 }

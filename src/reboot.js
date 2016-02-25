@@ -84,6 +84,10 @@ class Reboot {
         textDecoration: theme.linkHoverDecoration
       },
 
+      'a:focus': {
+        outline: 'none'
+      },
+
       pre: {
         marginTop: 0,
         marginBottom: '1rem'

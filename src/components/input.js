@@ -138,10 +138,10 @@ export class Input extends React.Component {
       borderStyle: 'solid',
       borderColor: theme.inputBorderColor,
       borderRadius,
+      outline: 'none',
       transition: 'border-color ease-in-out .15s',
       ':focus': {
-        borderColor: theme.focusedInputBorderColor,
-        outline: 'none'
+        borderColor: theme.focusedInputBorderColor
       }
     };
 

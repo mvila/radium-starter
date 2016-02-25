@@ -23,6 +23,13 @@ export function Decorator(component, radiumConfig) {
     if (originalComponentWillMount) originalComponentWillMount.call(this);
   };
 
+  let originalComponentWillReceiveProps = component.prototype.componentWillReceiveProps;
+  component.prototype.componentWillReceiveProps = function(nextProps, nextContext) {
+    this.theme = nextContext.theme;
+    this.styles = nextContext.styles;
+    if (originalComponentWillReceiveProps) originalComponentWillReceiveProps.call(this, nextProps, nextContext);
+  };
+
   return Radium(radiumConfig)(component);
 }
 

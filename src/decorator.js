@@ -15,20 +15,19 @@ export function Decorator(component, radiumConfig) {
   component.contextTypes.theme = React.PropTypes.object.isRequired;
   component.contextTypes.styles = React.PropTypes.object.isRequired;
 
-  let originalComponentWillMount = component.prototype.componentWillMount;
-  component.prototype.componentWillMount = function() {
-    this.Radium = Radium;
-    this.theme = this.context.theme;
-    this.styles = this.context.styles;
-    if (originalComponentWillMount) originalComponentWillMount.call(this);
-  };
+  component.prototype.Radium = Radium;
 
-  let originalComponentWillReceiveProps = component.prototype.componentWillReceiveProps;
-  component.prototype.componentWillReceiveProps = function(nextProps, nextContext) {
-    this.theme = nextContext.theme;
-    this.styles = nextContext.styles;
-    if (originalComponentWillReceiveProps) originalComponentWillReceiveProps.call(this, nextProps, nextContext);
-  };
+  Object.defineProperty(component.prototype, 'theme', {
+    get() {
+      return this.context.theme;
+    }
+  });
+
+  Object.defineProperty(component.prototype, 'styles', {
+    get() {
+      return this.context.styles;
+    }
+  });
 
   return Radium(radiumConfig)(component);
 }

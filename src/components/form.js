@@ -35,14 +35,15 @@ export class Form extends React.Component {
   }
 
   handleOnSubmit(event) {
-    if (!this.submitted) this.submitted = true;
     if (event.target.checkValidity) {
       if (!event.target.checkValidity()) { // For Safari
+        if (!this.submitted) this.submitted = true;
         event.preventDefault();
         return;
       }
     }
     if (this.originalOnSubmit) this.originalOnSubmit(event);
+    if (this.submitted) this.submitted = false;
   }
 
   render() {

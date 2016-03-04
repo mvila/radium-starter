@@ -60,7 +60,6 @@ export class RadiumStarterRoot extends React.Component {
 
   updateComputedState() {
     this.elements = new Elements(this.state.theme);
-    console.log(this.elements.small);
 
     this.styles = new Styles(this.state.theme);
     if (this.props.styles) {

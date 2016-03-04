@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { RadiumStarter, Form, Input, Button } from '../../src';
+import { RadiumStarter, Form, Input, TextArea, Button } from '../../src';
 
 @RadiumStarter
 export class Page extends React.Component {
@@ -99,6 +99,7 @@ export class Page extends React.Component {
         <p><Input type='text' readOnly defaultValue='Read only field' /></p>
         <p><Input type='text' placeholder='Placeholder' /></p>
         <p><Input type='text' defaultValue='Custom field' style={s.primaryColor} /></p>
+        <p><TextArea defaultValue='textarea' cols={40} /></p>
         <p style={{ lineHeight: 1 }}><label><Input type='checkbox' />&nbsp;Checkbox</label></p>
         <p style={{ lineHeight: 1 }}><label><Input type='radio' />&nbsp;Radio button</label></p>
 

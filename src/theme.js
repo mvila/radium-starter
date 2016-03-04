@@ -2,6 +2,7 @@
 
 import EventEmitterMixin from 'event-emitter-mixin';
 import Color from 'color';
+import reduceCSSCalc from 'reduce-css-calc';
 
 export class Theme extends EventEmitterMixin() {
   constructor(customAttributes = {}) {
@@ -53,11 +54,34 @@ export class Theme extends EventEmitterMixin() {
 
   @def rootFontSize = '16px';
   @def baseFontFamily = this.sansSerifFontFamily;
-  @def baseFontSize = '1rem';
-  @def baseLineHeight = 1.5;
 
-  @def smallFontSize = '.875rem';
-  @def largeFontSize = '1.25rem';
+  @def baseFontSize = '1rem';
+
+  @def modularScaleRatio = 1.2; // http://www.modularscale.com/?1&em&1.2&web&text
+
+  modularScale(value, base = this.baseFontSize, ratio = this.modularScaleRatio) {
+    let multiplier = Math.pow(ratio, value);
+    return reduceCSSCalc(`calc(${base} * ${multiplier})`);
+  }
+
+  @def baseLineHeight = this.modularScale(2, 1); // 1.44
+  @def smallLineHeight = this.modularScale(1, 1); // 1.2
+
+  @def smallFontSize = this.modularScale(-1); // '.833rem'
+  @def largeFontSize = this.modularScale(1); // '1.2rem'
+
+  @def headingsMarginBottom = this.modularScale(-4); // '.482rem'
+  @def headingsFontFamily = 'inherit';
+  @def headingsFontWeight = 'bold';
+  @def headingsLineHeight = this.smallLineHeight;
+  @def headingsColor = 'inherit';
+
+  @def h1FontSize = this.modularScale(5); // '2.488rem'
+  @def h2FontSize = this.modularScale(4); // '2.074rem'
+  @def h3FontSize = this.modularScale(3); // '1.728rem'
+  @def h4FontSize = this.modularScale(2); // '1.44rem'
+  @def h5FontSize = this.modularScale(1); // '1.2rem'
+  @def h6FontSize = this.modularScale(0); // '1rem'
 
   // --- Borders ---
 
@@ -66,21 +90,6 @@ export class Theme extends EventEmitterMixin() {
 
   @def smallBorderRadius = '.2rem';
   @def largeBorderRadius = '.3rem';
-
-  // --- Headings ---
-
-  @def headingsMarginBottom = '.5rem';
-  @def headingsFontFamily = 'inherit';
-  @def headingsFontWeight = 'bold';
-  @def headingsLineHeight = 1.25; // was 1.1 in Bootstrap 4
-  @def headingsColor = 'inherit';
-
-  @def h1FontSize = '2.5rem';
-  @def h2FontSize = '2rem';
-  @def h3FontSize = '1.75rem';
-  @def h4FontSize = '1.5rem';
-  @def h5FontSize = '1.25rem';
-  @def h6FontSize = '1rem';
 
   // --- Tables ---
 
@@ -96,7 +105,7 @@ export class Theme extends EventEmitterMixin() {
   // --- Buttons ---
 
   @def buttonFontWeight = 'normal';
-  @def buttonLineHeight = 1.25;
+  @def buttonLineHeight = this.smallLineHeight;
 
   @def buttonXPadding = '1rem';
   @def buttonYPadding = '.5rem';
@@ -104,7 +113,7 @@ export class Theme extends EventEmitterMixin() {
   @def smallButtonXPadding = '.5rem';
   @def smallButtonYPadding = '.25rem';
 
-  @def largeButtonXPadding = '1.5rem';
+  @def largeButtonXPadding = '1.25rem';
   @def largeButtonYPadding = '.75rem';
 
   @def buttonTextColor = this.primaryTextColor;
@@ -127,7 +136,7 @@ export class Theme extends EventEmitterMixin() {
 
   // --- Inputs ---
 
-  @def inputLineHeight = 1.25;
+  @def inputLineHeight = this.smallLineHeight;
   @def inputTextColor = this.primaryTextColor;
   @def inputBackgroundColor = this.bodyColor;
   @def inputBorderWidth = this.borderWidth;
@@ -138,13 +147,13 @@ export class Theme extends EventEmitterMixin() {
 
   @def disabledInputBackgroundColor = this.altBodyColor;
 
-  @def inputXPadding = '.625rem'; // was '.75rem' in Bootstrap 4
+  @def inputXPadding = '.625rem';
   @def inputYPadding = '.5rem';
 
-  @def smallInputXPadding = '.375rem'; // was '.5rem' in Bootstrap 4
+  @def smallInputXPadding = '.375rem';
   @def smallInputYPadding = '.25rem';
 
-  @def largeInputXPadding = '.875rem'; // was '1.5rem' in Bootstrap 4
+  @def largeInputXPadding = '.875rem';
   @def largeInputYPadding = '.75rem';
 
   // --- Other ---

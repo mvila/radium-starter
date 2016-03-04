@@ -43,7 +43,7 @@ class Reboot {
       },
 
       small: {
-        fontSize: '87.5%' // Was '80%' in radium-normalize
+        fontSize: theme.modularScale(-1, '100%')
       },
 
       address: {

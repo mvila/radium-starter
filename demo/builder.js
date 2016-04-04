@@ -172,8 +172,6 @@ export class Builder {
     let inputDir = this.sourceDir;
     let inputPath = pathModule.join(inputDir, this.appScriptFilename);
     let opts = this.watchMode ? watchify.args : {};
-    // if (this.app.environment === 'development') opts.debug = true;
-    if (this.app.environment === 'development') opts.fullPaths = true;
     let bro = browserify(opts);
     bro.transform(babelify, {
       presets: ['es2015', 'react'],
@@ -191,9 +189,7 @@ export class Builder {
     }
     let bundle = async function() {
       let output = await _bundle();
-      if (this.app.environment !== 'development') {
-        output = (UglifyJS.minify(output.toString(), { fromString: true })).code;
-      }
+      output = (UglifyJS.minify(output.toString(), { fromString: true })).code;
       let outputDir = pathModule.join(this.targetDir, this.scriptsDirname || '');
       let outputPath = pathModule.join(outputDir, this.browserifiedAppScriptFilename);
       fs.writeFileSync(outputPath, output);

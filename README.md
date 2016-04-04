@@ -16,7 +16,7 @@ This package provides the bare minimum to make HTML/CSS a better world:
 
 ## Compatibility
 
-Modern browsers and IE11+.
+Modern browsers (including IE11).
 
 ## Demo
 
@@ -93,9 +93,68 @@ render() {
 }
 ```
 
-## TODO
+## Built-in styles
 
-* Complete documentation
+Components decorated by `RadiumStarter` get a `styles` property containing many convenient styles usable with the `style` property of any HTML element.
+
+Example : `<span style={this.styles.primaryColor}>Hello, World!</span>`.
+
+Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combine several styles with an array:
+
+Example : `<span style={[this.styles.bold, this.styles.italic]}>Hi</span>`.
+
+### Text colors
+
+`primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `bodyColor`, `altBodyColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`: convenient styles to define text color (CSS `color` property).
+
+Example : `<span style={[this.styles.warningColor]}>Notice</span>`
+
+### Background colors
+
+`backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`: convenient styles to define background color (CSS `backgroundColor` property).
+
+Example : `<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>`
+
+### Text styling
+
+`regular`: set `font-weight` to `normal`.
+
+`bold`: set `font-weight` to `bold`.
+
+`italic`: set `font-style` to `italic`.
+
+`mutedText`: set `color` to `mutedTextColor` theme variable.
+
+### Block styling
+
+`border`: add `top`, `right`, `bottom` and `left` borders.
+
+`topBorder`, `rightBorder`, `bottomBorder`, `leftBorder`: add the corresponding border.
+
+`rounded`: set `borderRadius` to `borderRadius` theme variable.
+
+### List styling
+
+`unstyledList`: remove default HTML list (`ul`, `ol`) styling.
+
+
+### Responsive styling
+
+`shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
+
+`shownIfMedium`/`hiddenIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
+
+`shownIfLarge`/`hiddenIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
+
+### Utilities
+
+`shownIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
+
+`hiddenIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
+
+### More
+
+Check [styles.js](https://github.com/mvila/radium-starter/blob/master/src/styles.js) for the full set of styles.
 
 ## License
 

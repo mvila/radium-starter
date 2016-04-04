@@ -4,13 +4,13 @@ Base styles for [Radium](http://stack.formidable.com/radium/).
 
 ## Introduction
 
-Nope, this is not another CSS framework! :)
+Nope, this is not another CSS framework!
 
 This package provides the bare minimum to make HTML/CSS a better world:
 
 - Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
-- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) for Safari.
 - Basic styling of HTML elements (heavily inspired from [Bootstrap 4](http://getbootstrap.com/)).
+- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) for Safari.
 - Theme system (i.e. variables for defining colors, font sizes, etc.)
 - Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
 
@@ -20,7 +20,7 @@ Modern browsers and IE11+.
 
 ## Demo
 
-Check the demo [here](http://mvila.github.io/radium-starter/).
+Have a look to the demo [here](http://mvila.github.io/radium-starter/).
 
 ## Installation
 
@@ -67,7 +67,7 @@ render() {
 }
 ```
 
-... and Radium Starter features, including predefined styles:
+... and **Radium Starter** features, including built-in styles:
 
 ```javascript
 render() {

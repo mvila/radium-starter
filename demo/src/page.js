@@ -47,7 +47,7 @@ export class Page extends React.Component {
     }
 
     return (
-      <div style={{ margin: '1.5rem auto', width: 800 }}>
+      <div style={{ margin: '0 auto', padding: '1.5rem', maxWidth: 800 }}>
         <h1 style={title1}>{app.displayName}</h1>
 
         <h2 style={title2}>Layout</h2>

@@ -1,18 +1,18 @@
 # Radium Starter  [![npm version](https://img.shields.io/npm/v/radium-starter.svg)](https://www.npmjs.com/package/radium-starter)
 
-Base styles for [Radium](http://stack.formidable.com/radium/)).
+Base styles for [Radium](http://stack.formidable.com/radium/).
 
 ## Introduction
 
-This is not another CSS framework! :)
+Nope, this is not another CSS framework! :)
 
 This package provides the bare minimum to make HTML/CSS a better world:
 
 - Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
-- Polyfill (for now, the only polyfill implemented is Form validation for Safari).
-- Basic styling of HTML elements (inspired from [Bootstrap 4](http://getbootstrap.com/)).
-- Color system (inspired from [Material design](https://www.google.com/design/spec/style/color.html)).
-- Heavily customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
+- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) for Safari.
+- Basic styling of HTML elements (heavily inspired from [Bootstrap 4](http://getbootstrap.com/)).
+- Theme system (i.e. variables for defining colors, font sizes, etc.)
+- Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
 
 ## Compatibility
 
@@ -20,7 +20,7 @@ Modern browsers and IE11+.
 
 ## Demo
 
-[http://mvila.github.io/radium-starter/](http://mvila.github.io/radium-starter/)
+Check the demo [here](http://mvila.github.io/radium-starter/).
 
 ## Installation
 
@@ -30,9 +30,72 @@ npm install --save radium-starter
 
 ## Usage
 
+At the root of your application, define a `theme` and use `RadiumStarterRoot` to wrap your main component:
+
 ```javascript
-// TODO: Documentation!
+import { RadiumStarterRoot, Theme } from 'radium-starter';
+
+let theme = new Theme({ primaryColor: '#2196F3', accentColor: '#FF5252' });
+
+ReactDOM.render(
+  <RadiumStarterRoot theme={theme}>
+    <Main />
+  </RadiumStarterRoot>,
+  document.getElementById('root')
+);
 ```
+
+Then, use the `RadiumStarter` decorator:
+
+```javascript
+import React from 'react';
+import { RadiumStarter, Button } from 'radium-starter';
+
+@RadiumStarter
+export class Main extends React.Component {
+  render() {
+    return <p>Hello, World!</p>;
+  }
+}
+```
+
+Once a component is decorated, you can use all the power of [Radium](http://stack.formidable.com/radium/):
+
+```javascript
+render() {
+  return <p style={{ ':hover': { color: '#2196F3' }}>Hover me</p>;
+}
+```
+
+... and Radium Starter features, including predefined styles:
+
+```javascript
+render() {
+  let s = this.styles;
+  return <div style={[s.primaryColor, s.bold, s.border]}>Hello, World!</div>;
+}
+```
+
+Theme variables:
+
+```javascript
+render() {
+  let t = this.theme;
+  return <div style={{ color: t.errorColor }}>An error occurred</div>;
+}
+```
+
+And enhanced HTML elements:
+
+```javascript
+render() {
+  return <Button rsLarge rsPrimary>Sign up</Button>;
+}
+```
+
+## TODO
+
+* Complete documentation
 
 ## License
 

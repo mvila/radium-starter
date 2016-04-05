@@ -35,7 +35,7 @@ export class Page extends React.Component {
           <div style={[s.minimumLineHeight, { flexShrink: 0, alignSelf: 'flex-end' }]}>
             <ul style={menuStyle}>
               <li style={menuItemStyle}><a href='#docs' style={menuItemLinkStyle}>Docs</a></li>
-              <li style={menuItemStyle}><a href='demo' style={menuItemLinkStyle}>Demo</a></li>
+              <li style={menuItemStyle}><a href='demo/index.html' style={menuItemLinkStyle}>Demo</a></li>
               <li style={menuItemStyle}><a href='https://github.com/mvila/radium-starter' style={menuItemLinkStyle}>GitHub</a></li>
             </ul>
           </div>

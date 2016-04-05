@@ -70,7 +70,7 @@ export class Theme extends EventEmitterMixin() {
   @def smallFontSize = this.modularScale(-1); // '.833rem'
   @def largeFontSize = this.modularScale(1); // '1.2rem'
 
-  @def headingsMarginBottom = this.modularScale(-4); // '.482rem'
+  @def headingsMarginBottom = '1rem';
   @def headingsFontFamily = 'inherit';
   @def headingsFontWeight = 'bold';
   @def headingsLineHeight = this.smallLineHeight;

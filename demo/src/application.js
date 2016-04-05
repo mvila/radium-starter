@@ -11,8 +11,6 @@ class Application {
     this.name = 'radium-starter-demo';
     this.displayName = 'Radium Starter Demo';
 
-    window.addEventListener('error', console.error, false);
-
     this.theme = new Theme();
 
     this.themes = {

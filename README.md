@@ -2,7 +2,8 @@
 
 Base styles for [Radium](http://stack.formidable.com/radium/).
 
-## Introduction
+<!-- contentBegin -->
+### Introduction
 
 Nope, this is not another CSS framework!
 
@@ -14,21 +15,21 @@ This package provides the bare minimum to make HTML/CSS a better world:
 - Theme system (i.e. variables for defining colors, font sizes, etc.)
 - Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
 
-## Compatibility
+### Compatibility
 
 Modern browsers (including IE11).
 
-## Demo
+### Demo
 
-Have a look to the demo [here](http://mvila.github.io/radium-starter/).
+Have a look to the [demo here](http://mvila.github.io/radium-starter/).
 
-## Installation
+### Installation
 
-```
+```bash
 npm install --save radium-starter
 ```
 
-## Usage
+### Usage
 
 At the root of your application, define a `theme` and use `RadiumStarterRoot` to wrap your main component:
 
@@ -93,29 +94,51 @@ render() {
 }
 ```
 
-## Built-in styles
+### Theme system
+
+```javascript
+// TODO
+```
+
+### Built-in styles
 
 Components decorated by `RadiumStarter` get a `styles` property containing many convenient styles usable with the `style` property of any HTML element.
 
-Example : `<span style={this.styles.primaryColor}>Hello, World!</span>`.
+Example :
+
+```javascript
+<span style={this.styles.primaryColor}>Hello, World!</span>
+```
 
 Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combine several styles with an array:
 
-Example : `<span style={[this.styles.bold, this.styles.italic]}>Hi</span>`.
+Example :
 
-### Text colors
+```javascript
+<span style={[this.styles.bold, this.styles.italic]}>Hi</span>
+```
+
+#### Text colors
 
 `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `bodyColor`, `altBodyColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`: convenient styles to define text color (CSS `color` property).
 
-Example : `<span style={[this.styles.warningColor]}>Notice</span>`
+Example :
 
-### Background colors
+```javascript
+<span style={[this.styles.warningColor]}>Notice</span>
+```
+
+#### Background colors
 
 `backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`: convenient styles to define background color (CSS `backgroundColor` property).
 
-Example : `<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>`
+Example :
 
-### Text styling
+```javascript
+<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>
+```
+
+#### Text styling
 
 `regular`: set `font-weight` to `normal`.
 
@@ -125,20 +148,20 @@ Example : `<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>`
 
 `mutedText`: set `color` to `mutedTextColor` theme variable.
 
-### Block styling
+#### Block styling
 
 `border`: add `top`, `right`, `bottom` and `left` borders.
 
-`topBorder`, `rightBorder`, `bottomBorder`, `leftBorder`: add the corresponding border.
+`topBorder`, `rightBorder`, `bottomBorder`, `leftBorder`: add only the corresponding border.
 
 `rounded`: set `borderRadius` to `borderRadius` theme variable.
 
-### List styling
+#### List styling
 
 `unstyledList`: remove default HTML list (`ul`, `ol`) styling.
 
 
-### Responsive styling
+#### Responsive styling
 
 `shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
 
@@ -146,16 +169,30 @@ Example : `<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>`
 
 `shownIfLarge`/`hiddenIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
 
-### Utilities
+#### Utilities
 
 `shownIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
 
 `hiddenIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
 
-### More
+#### More
 
 Check [styles.js](https://github.com/mvila/radium-starter/blob/master/src/styles.js) for the full set of styles.
 
-## License
+#### Customization
+
+Pass the `styles` property to the `RadiumStarterRoot` component to add new styles and customize the existing ones.
+
+```javascript
+ReactDOM.render(
+  <RadiumStarterRoot styles={{ myStyle: { color: '#abc' } }}>
+    <Main />
+  </RadiumStarterRoot>,
+  document.getElementById('root')
+);
+```
+
+### License
 
 MIT
+<!-- contentEnd -->

@@ -15,93 +15,24 @@ import watchify from 'watchify';
 import babelify from 'babelify';
 
 export class Builder {
-  constructor(app, options = {}) {
-    this.app = app;
-
+  constructor(options = {}) {
     Object.assign(this, pick(options, [
       'sourceDir',
       'targetDir',
-      'vendorDirname',
-      'inputStylesDirname',
-      'outputStylesDirname',
-      'sassFilename',
-      'sassDependencyFilenames',
-      'vendorCSSPaths',
-      'cssFilename',
       'htmlIndexFilenames',
       'staticFilePaths',
       'scriptsDirname',
-      'vendorScriptPaths',
-      'vendorScriptFilename',
       'appScriptFilename',
       'browserifiedAppScriptFilename',
+      'injectedContent',
       'watchMode'
     ]));
   }
 
   async build() {
-    await this.initialize();
     await this.cleanAll();
     await this.buildAll();
     if (this.watchMode) await this.watchAll();
-  }
-
-  async initialize() {
-    this.temporaryDir = pathModule.join('/tmp', this.app.name);
-    mkdirp.sync(this.temporaryDir);
-  }
-
-  async checkEnvironment() {
-    console.log('checkEnvironment: ' + this.app.environment);
-  }
-
-  async buildCSS() {
-    let output = '';
-
-    let cssPaths = this.vendorCSSPaths.map(path => {
-      return pathModule.join(this.sourceDir, this.vendorDirname, path);
-    });
-    cssPaths.forEach(function(path) {
-      output += fs.readFileSync(path, 'utf8');
-    });
-
-    if (this.sassFilename) {
-      let sass = require('node-sass');
-      let inputDir = pathModule.join(this.sourceDir, this.inputStylesDirname || '');
-      let inputPath = pathModule.join(inputDir, this.sassFilename);
-      output += sass.renderSync({
-        file: inputPath,
-        includePaths: [inputDir]
-      }).css;
-    }
-
-    if (output) {
-      let outputDir = pathModule.join(this.targetDir, this.outputStylesDirname || '');
-      mkdirp.sync(outputDir);
-      let outputPath = pathModule.join(outputDir, this.cssFilename);
-      fs.writeFileSync(outputPath, output);
-    }
-
-    console.log('buildCSS: done');
-  }
-
-  async watchCSS() {
-    let cssDir = pathModule.join(this.sourceDir, this.inputStylesDirname || '');
-    let filenames = [];
-    if (this.sassFilename) filenames.push(this.sassFilename);
-    filenames = filenames.concat(this.sassDependencyFilenames);
-    if (!filenames.length) return;
-    let paths = filenames.map(filename => {
-      return pathModule.join(cssDir, filename);
-    });
-    watch(paths, async function() {
-      try {
-        await this.buildCSS();
-        await this.copyHTMLIndexFiles();
-      } catch (err) {
-        console.error(err);
-      }
-    }.bind(this));
   }
 
   async copyStaticFiles() {
@@ -142,30 +73,6 @@ export class Builder {
         console.error(err);
       }
     }.bind(this));
-  }
-
-  async concatVendorScript() {
-    let scriptPaths = this.vendorScriptPaths.map(path => {
-      return pathModule.join(this.sourceDir, this.vendorDirname, path);
-    });
-    let output = '';
-    if (scriptPaths.length) {
-      if (this.app.environment === 'development') {
-        scriptPaths.forEach(path => {
-          output += fs.readFileSync(path, 'utf8');
-        });
-      } else {
-        let result = UglifyJS.minify(scriptPaths);
-        output += result.code;
-      }
-    }
-    if (output) {
-      let outputDir = pathModule.join(this.targetDir, this.scriptsDirname || '');
-      mkdirp.sync(outputDir);
-      let outputPath = pathModule.join(outputDir, this.vendorScriptFilename);
-      fs.writeFileSync(outputPath, output);
-    }
-    console.log('concatVendorScript: done');
   }
 
   async browserifyAppScript() {
@@ -213,6 +120,14 @@ export class Builder {
       let inputDir = this.sourceDir;
       let inputPath = pathModule.join(inputDir, filename);
       let html = fs.readFileSync(inputPath, 'utf8');
+
+      let injectedContent = this.injectedContent;
+      if (injectedContent) {
+        injectedContent = injectedContent.replace(/'/g, '\\\'');
+        injectedContent = injectedContent.replace(/\n/g, '\\n');
+        html = html.replace(/\{injectedContent\}/g, injectedContent);
+      }
+      
       let outputDir = this.targetDir;
       let outputPath = pathModule.join(outputDir, filename);
       outputDir = pathModule.dirname(outputPath);
@@ -228,16 +143,12 @@ export class Builder {
 
   async buildAll() {
     mkdirp.sync(this.targetDir);
-    await this.checkEnvironment();
-    await this.buildCSS();
     await this.copyStaticFiles();
-    await this.concatVendorScript();
     await this.browserifyAppScript();
     await this.copyHTMLIndexFiles();
   }
 
   async watchAll() {
-    await this.watchCSS();
     await this.watchStaticFiles();
   }
 }

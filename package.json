@@ -28,7 +28,7 @@
     "compile": "babel src --out-dir lib",
     "build-demo": "node demo",
     "build-docs": "node docs",
-    "publish-docs": "git checkout gh-pages && cp docs/dist/* . && cp demo/dist/* demo/ && (test -z \"$(git status --porcelain)\" || (git commit --all --message \"Update docs and demo files\" && git push)) && git checkout master",
+    "publish-docs": "git checkout gh-pages && cp -R docs/dist/* . && cp -R demo/dist/* demo/ && (test -z \"$(git status --porcelain)\" || (git commit --all --message \"Update docs and demo files\" && git push)) && git checkout master",
     "release": "npm run lint && npm run compile && npm test && (git checkout --quiet master && test -z \"$(git status --porcelain)\" && npm version $npm_config_release_type && git push --follow-tags && npm publish) || echo \"An error occurred (uncommitted changes?)\"",
     "release-patch": "npm run release --release-type=patch",
     "release-minor": "npm run release --release-type=minor",

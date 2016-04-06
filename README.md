@@ -12,7 +12,7 @@ This package provides the bare minimum to make HTML/CSS a better world:
 - Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
 - Basic styling of HTML elements (heavily inspired from [Bootstrap 4](http://getbootstrap.com/)).
 - Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) for Safari.
-- Theme system (i.e. variables for defining colors, font sizes, etc.)
+- Theme variables (i.e. variables for defining colors, font sizes, etc.)
 - Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
 
 ## Compatibility
@@ -68,7 +68,7 @@ render() {
 }
 ```
 
-... and **Radium Starter** features, including built-in styles:
+... and Radium Starter features, including built-in styles:
 
 ```javascript
 render() {
@@ -94,11 +94,57 @@ render() {
 }
 ```
 
-## Theme system
+## Theme variables
+
+Radium Starter provides theme variables with sensible default values for font sizes, colors, spacing, etc. You can pass a `theme` attribute to the `RadiumStarterRoot` component to customize any variable. For example, if you want to change the primary color, you would do something like this:
 
 ```javascript
-// TODO
+ReactDOM.render(
+  <RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
+    <Main />
+  </RadiumStarterRoot>,
+  document.getElementById('root')
+);
 ```
+
+But you can do even better, instead of passing a POJO object to `RadiumStarterRoot`, you can pass an instance of the `Theme` class. The advantage of using the `Theme` class is that if you change some theme variables later, all your React components will be automatically re-rendered to reflect the changes. For example:
+
+```javascript
+import { RadiumStarterRoot, Theme } from 'radium-starter';
+
+let theme = new Theme({ primaryColor: '#2196F3' });
+
+ReactDOM.render(
+  <RadiumStarterRoot theme={theme}>
+    <Main />
+  </RadiumStarterRoot>,
+  document.getElementById('root')
+);
+```
+
+Later, changing the primary color:
+
+```javascript
+theme.primaryColor = '#FF5252';
+```
+
+... will automatically re-render everything with the new color value.
+
+One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another variable, you can use a function:
+
+```javascript
+let theme = new Theme({ linkColor: theme => theme.accentColor });
+```
+
+Here is a just a few useful theme variables:
+
+* Base colors: `primaryColor`, `accentColor`, `textColor`, `inverseTextColor`, `bodyColor`, `borderColor`, `errorColor`, `warningColor`.
+* Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
+* Font sizes: `rootFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
+* Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
+* Breakpoints: `smallBreakpoint`, `mediumBreakpoint`, `largeBreakpoint`.
+
+Many other variables are available, please check [theme.js](https://github.com/mvila/radium-starter/blob/master/src/theme.js) file.
 
 ## Built-in styles
 
@@ -130,7 +176,7 @@ Example :
 
 ### Background colors
 
-`backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`: convenient styles to define background color (CSS `backgroundColor` property).
+`backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`: convenient styles to define background color (CSS `background-color` property).
 
 Example :
 
@@ -181,7 +227,7 @@ Check [styles.js](https://github.com/mvila/radium-starter/blob/master/src/styles
 
 ### Customization
 
-Pass the `styles` property to the `RadiumStarterRoot` component to add new styles and customize the existing ones.
+Pass the `styles` attribute to the `RadiumStarterRoot` component to add new styles and customize the existing ones.
 
 ```javascript
 ReactDOM.render(

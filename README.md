@@ -5,15 +5,13 @@ Base styles for [Radium](http://stack.formidable.com/radium/).
 <!-- contentBegin -->
 ## Introduction
 
-Nope, this is not another CSS framework!
-
-This package provides the bare minimum to make HTML/CSS a better world:
+Nope, this is not another CSS framework! This package provides the bare minimum to make HTML/CSS a better world:
 
 - Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
 - Basic styling of HTML elements.
 - Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari.
 - Theme variables (i.e. variables for defining colors, font sizes, etc.)
-- Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
+- [Radium](http://stack.formidable.com/radium/) for flexible customization and high composability.
 
 ## Compatibility
 
@@ -21,7 +19,7 @@ Modern browsers (including IE11).
 
 ## Demo
 
-Have a look to the [demo here](http://mvila.github.io/radium-starter/).
+Have a look to the [demo here](http://mvila.github.io/radium-starter/demo/index.html).
 
 ## Installation
 
@@ -34,12 +32,10 @@ npm install --save radium-starter
 At the root of your application, define a `theme` and use `RadiumStarterRoot` to wrap your main component:
 
 ```javascript
-import { RadiumStarterRoot, Theme } from 'radium-starter';
-
-let theme = new Theme({ primaryColor: '#2196F3', accentColor: '#FF5252' });
+import { RadiumStarterRoot } from 'radium-starter';
 
 ReactDOM.render(
-  <RadiumStarterRoot theme={theme}>
+  <RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
     <Main />
   </RadiumStarterRoot>,
   document.getElementById('root')
@@ -96,15 +92,12 @@ render() {
 
 ## Theme variables
 
-Radium Starter provides theme variables with sensible default values for font sizes, colors, spacing, etc. You can pass a `theme` attribute to the `RadiumStarterRoot` component to customize any variable. For example, if you want to change the primary color, you would do something like this:
+Radium Starter provides theme variables with sensible defaults for font sizes, colors, spacing, etc. You can pass a `theme` attribute to the `RadiumStarterRoot` component to customize any variable. For example, if you want to change the primary color, you would do something like that:
 
 ```javascript
-ReactDOM.render(
-  <RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
-    <Main />
-  </RadiumStarterRoot>,
-  document.getElementById('root')
-);
+<RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
+  <Main />
+</RadiumStarterRoot>
 ```
 
 But you can do even better, instead of passing a POJO object to `RadiumStarterRoot`, you can pass an instance of the `Theme` class. The advantage of using the `Theme` class is that if you change some theme variables later, all your React components will be automatically re-rendered to reflect the changes. For example:
@@ -128,12 +121,27 @@ Later, changing the primary color:
 theme.primaryColor = '#FF5252';
 ```
 
-... will automatically re-render everything with the new color value.
+... will automatically re-render everything with the new primary color.
 
-One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another variable, you can use a function:
+One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another, you can specify a function:
 
 ```javascript
 let theme = new Theme({ linkColor: theme => theme.accentColor });
+```
+
+Components decorated by `RadiumStarter` automatically get a `theme` property providing you an access to the current theme instance:
+
+```javascript
+import React from 'react';
+import { RadiumStarter } from 'radium-starter';
+
+@RadiumStarter
+export class Main extends React.Component {
+  render() {
+    let t = this.theme; // Get the current theme
+    return <div style={{ fontSize: t.h1FontSize }}>Special title</div>;
+  }
+}
 ```
 
 Here is a just a few useful theme variables:
@@ -144,11 +152,11 @@ Here is a just a few useful theme variables:
 * Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
 * Breakpoints: `smallBreakpoint`, `mediumBreakpoint`, `largeBreakpoint`.
 
-Many other variables are available, please check [theme.js](https://github.com/mvila/radium-starter/blob/master/src/theme.js) file.
+Many other variables are available, please check the [theme.js](https://github.com/mvila/radium-starter/blob/master/src/theme.js) file.
 
 ## Built-in styles
 
-Components decorated by `RadiumStarter` get a `styles` property containing many convenient styles usable with the `style` property of any HTML element.
+Components decorated by `RadiumStarter` get a `styles` property containing many convenient styles usable with the `style` attribute of HTML elements.
 
 Example :
 
@@ -166,7 +174,7 @@ Example :
 
 ### Text colors
 
-`primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `bodyColor`, `altBodyColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`: convenient styles to define text color (CSS `color` property).
+Convenient styles to define text color (CSS `color` property): `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `bodyColor`, `altBodyColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`.
 
 Example :
 
@@ -176,7 +184,7 @@ Example :
 
 ### Background colors
 
-`backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`: convenient styles to define background color (CSS `background-color` property).
+Convenient styles to define background color (CSS `background-color` property): `backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`.
 
 Example :
 
@@ -186,40 +194,31 @@ Example :
 
 ### Text styling
 
-`regular`: set `font-weight` to `normal`.
-
-`bold`: set `font-weight` to `bold`.
-
-`italic`: set `font-style` to `italic`.
-
-`mutedText`: set `color` to `mutedTextColor` theme variable.
+* `regular`: set `font-weight` to `normal`.
+* `bold`: set `font-weight` to `bold`.
+* `italic`: set `font-style` to `italic`.
+* `mutedText`: set `color` to `mutedTextColor` theme variable.
 
 ### Block styling
 
-`border`: add `top`, `right`, `bottom` and `left` borders.
-
-`topBorder`, `rightBorder`, `bottomBorder`, `leftBorder`: add only the corresponding border.
-
-`rounded`: set `borderRadius` to `borderRadius` theme variable.
+* `border`: add top, right, bottom and left borders.
+* `topBorder`, `rightBorder`, `bottomBorder`, `leftBorder`: add only the corresponding border.
+* `rounded`: set `borderRadius` CSS property to `borderRadius` theme variable.
 
 ### List styling
 
-`unstyledList`: remove default HTML list (`ul`, `ol`) styling.
-
+* `unstyledList`: remove default HTML list (`ul`, `ol`) styling.
 
 ### Responsive tools
 
-`shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
-
-`shownIfMedium`/`hiddenIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
-
-`shownIfLarge`/`hiddenIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
+* `shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
+* `shownIfMedium`/`hiddenIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
+* `shownIfLarge`/`hiddenIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
 
 ### Utilities
 
-`shownIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
-
-`hiddenIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
+* `shownIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
+* `hiddenIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
 
 ### More
 
@@ -227,28 +226,25 @@ Check [styles.js](https://github.com/mvila/radium-starter/blob/master/src/styles
 
 ### Customization
 
-Pass the `styles` attribute to the `RadiumStarterRoot` component to add new styles and customize the existing ones.
+Pass the `styles` attribute to the `RadiumStarterRoot` component to add new styles or customize the existing ones.
 
 ```javascript
-ReactDOM.render(
-  <RadiumStarterRoot styles={{ myStyle: { color: '#abc' } }}>
-    <Main />
-  </RadiumStarterRoot>,
-  document.getElementById('root')
-);
+<RadiumStarterRoot styles={{ myStyle: { color: '#abc' } }}>
+  <Main />
+</RadiumStarterRoot>
 ```
 
 ## Enhanced HTML elements
 
 Radium Starter is not a full-featured framework like [Bootstrap](http://getbootstrap.com/) or [Foundation](http://foundation.zurb.com/). It doesn't provide any fancy component like modals or carousels. What Radium Starter does is just enhancing standard HTML elements (`<p>`, `<a>`, `<h1>`, etc.).
 
-Most of the enhancements consist only in CSS styling and you don't have to do anything special to benefit from them, just use regular HTML tags. But sometimes, we needed more power control to add new attributes to HTML elements or to polyfill inconsistent or missing behaviors in certain browsers (e.g. [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari). This is why we created some custom React components that you can use in replacement of the standard HTML elements.
+Most of the enhancements consist only in CSS styling and you don't have to do anything special to benefit from that, just use regular HTML tags. But sometimes we needed more power control because we wanted to add new attributes to HTML elements or we needed to polyfill inconsistent or missing behaviors in certain browsers (e.g. [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari). This is why we created some custom React components that you can use in replacement of the standard HTML elements.
 
 ### `<Button>`
 
 Like the HTML `<button>` element but with some useful added attributes:
 
-* `rsSmall`, `rsLarge`: change the size of your controls.
+* `rsSmall`, `rsLarge`: smaller/larger sizes for your controls.
 * `rsPrimary`, `rsAccent`: colorize your buttons.
 
 Example:
@@ -259,13 +255,13 @@ Example:
 
 ### `<Form>`
 
-Use this component in replacement of the HTML `<form>` element to enjoy [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in any modern browser.
+Use this component in replacement of the HTML `<form>` element to enjoy [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in any modern browser (including Safari!).
 
 ### `<Input>`, `<Select>`, `<TextArea>`
 
-Enhance the corresponding HTML elements with the following attributes:
+Augment the corresponding HTML elements with the following attributes:
 
-* `rsSmall`, `rsLarge`: change the size of your controls.
+* `rsSmall`, `rsLarge`: smaller/larger sizes for your input fields.
 * `rsAutoSelect`: similar to the `autofocus` HTML attribute but select the content of an input in addition to focusing it.
 * `rsCustomValidity`: provide `setCustomValidity()` in a declarative way.
 

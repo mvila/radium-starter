@@ -1,6 +1,6 @@
 # Radium Starter  [![npm version](https://img.shields.io/npm/v/radium-starter.svg)](https://www.npmjs.com/package/radium-starter)
 
-Base styles for [Radium](http://stack.formidable.com/radium/).
+The minimum viable layer on top of HTML/CSS.
 
 <!-- contentBegin -->
 ## Introduction

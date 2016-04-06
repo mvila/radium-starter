@@ -1,13 +1,13 @@
 {
   "name": "radium-starter",
   "version": "0.9.0",
-  "description": "Base styles for Radium",
+  "description": "The minimum viable layer on top of HTML/CSS",
   "keywords": [
     "base",
     "style",
+    "html",
     "css",
     "radium",
-    "starter",
     "reset",
     "normalize",
     "theme",
@@ -15,7 +15,10 @@
     "typography",
     "form",
     "variables",
-    "defaults"
+    "defaults",
+    "minimal",
+    "layer",
+    "starter"
   ],
   "author": "Manuel Vila <mvila@3base.com>",
   "license": "MIT",

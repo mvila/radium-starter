@@ -22,6 +22,7 @@
   ],
   "author": "Manuel Vila <mvila@3base.com>",
   "license": "MIT",
+  "homepage": "https://mvila.github.io/radium-starter/",
   "reveal": true,
   "main": "lib/index.js",
   "repository": {

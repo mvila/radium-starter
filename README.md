@@ -10,8 +10,8 @@ Nope, this is not another CSS framework!
 This package provides the bare minimum to make HTML/CSS a better world:
 
 - Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
-- Basic styling of HTML elements (heavily inspired from [Bootstrap 4](http://getbootstrap.com/)).
-- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) for Safari.
+- Basic styling of HTML elements.
+- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari.
 - Theme variables (i.e. variables for defining colors, font sizes, etc.)
 - Highly customizable and composable (thanks to [Radium](http://stack.formidable.com/radium/)).
 
@@ -138,7 +138,7 @@ let theme = new Theme({ linkColor: theme => theme.accentColor });
 
 Here is a just a few useful theme variables:
 
-* Base colors: `primaryColor`, `accentColor`, `textColor`, `inverseTextColor`, `bodyColor`, `borderColor`, `errorColor`, `warningColor`.
+* Base colors: `primaryColor`, `accentColor`, `primaryTextColor`, `bodyColor`, `borderColor`, `errorColor`, `warningColor`.
 * Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
 * Font sizes: `rootFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
 * Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
@@ -207,7 +207,7 @@ Example :
 `unstyledList`: remove default HTML list (`ul`, `ol`) styling.
 
 
-### Responsive styling
+### Responsive tools
 
 `shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
 
@@ -237,6 +237,37 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+## Enhanced HTML elements
+
+Radium Starter is not a full-featured framework like [Bootstrap](http://getbootstrap.com/) or [Foundation](http://foundation.zurb.com/). It doesn't provide any fancy component like modals or carousels. What Radium Starter does is just enhancing standard HTML elements (`<p>`, `<a>`, `<h1>`, etc.).
+
+Most of the enhancements consist only in CSS styling and you don't have to do anything special to benefit from them, just use regular HTML tags. But sometimes, we needed more power control to add new attributes to HTML elements or to polyfill inconsistent or missing behaviors in certain browsers (e.g. [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari). This is why we created some custom React components that you can use in replacement of the standard HTML elements.
+
+### `<Button>`
+
+Like the HTML `<button>` element but with some useful added attributes:
+
+* `rsSmall`, `rsLarge`: change the size of your controls.
+* `rsPrimary`, `rsAccent`: colorize your buttons.
+
+Example:
+
+```javascript
+<Button rsLarge rsPrimary>Sign up</Button>
+```
+
+### `<Form>`
+
+Use this component in replacement of the HTML `<form>` element to enjoy [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in any modern browser.
+
+### `<Input>`, `<Select>`, `<TextArea>`
+
+Enhance the corresponding HTML elements with the following attributes:
+
+* `rsSmall`, `rsLarge`: change the size of your controls.
+* `rsAutoSelect`: similar to the `autofocus` HTML attribute but select the content of an input in addition to focusing it.
+* `rsCustomValidity`: provide `setCustomValidity()` in a declarative way.
 
 ## License
 

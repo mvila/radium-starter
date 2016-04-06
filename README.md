@@ -1,6 +1,6 @@
 # Radium Starter  [![npm version](https://img.shields.io/npm/v/radium-starter.svg)](https://www.npmjs.com/package/radium-starter)
 
-The minimum viable layer on top of HTML/CSS.
+The minimum viable layer on top of HTML/CSS (using React and Radium).
 
 <!-- contentBegin -->
 ## Introduction

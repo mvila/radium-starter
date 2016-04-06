@@ -211,14 +211,14 @@ Example :
 
 ### Responsive tools
 
-* `shownIfSmall`/`hiddenIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
-* `shownIfMedium`/`hiddenIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
-* `shownIfLarge`/`hiddenIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
+* `showIfSmall`/`hideIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
+* `showIfMedium`/`hideIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
+* `showIfLarge`/`hideIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
 
 ### Utilities
 
-* `shownIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
-* `hiddenIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
+* `showIf(condition)`: convenient function to hide an HTML element if `condition` is `false`.
+* `hideIf(condition)`: convenient function to hide an HTML element if `condition` is `true`.
 
 ### More
 

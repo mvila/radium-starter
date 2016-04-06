@@ -53,12 +53,12 @@ export class Page extends React.Component {
         <h2 style={title2}>Layout</h2>
 
         <h3 style={title3}>Responsive utilities</h3>
-        <p style={[s.hiddenIfSmall]}>hiddenIfSmall</p>
-        <p style={[s.shownIfSmall]}>shownIfSmall</p>
-        <p style={[s.hiddenIfMedium]}>hiddenIfMedium</p>
-        <p style={[s.shownIfMedium]}>shownIfMedium</p>
-        <p style={[s.hiddenIfLarge]}>hiddenIfLarge</p>
-        <p style={[s.shownIfLarge]}>shownIfLarge</p>
+        <p style={[s.hideIfSmall]}>hideIfSmall</p>
+        <p style={[s.showIfSmall]}>showIfSmall</p>
+        <p style={[s.hideIfMedium]}>hideIfMedium</p>
+        <p style={[s.showIfMedium]}>showIfMedium</p>
+        <p style={[s.hideIfLarge]}>hideIfLarge</p>
+        <p style={[s.showIfLarge]}>showIfLarge</p>
 
         <h2 style={title2}>Typography</h2>
 

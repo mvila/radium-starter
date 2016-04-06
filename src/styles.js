@@ -112,48 +112,48 @@ class Styles {
       listStyle: 'none'
     };
 
-    this.shownIf = function(condition) {
+    this.showIf = function(condition) {
       return !condition ? { display: 'none' } : undefined;
     };
 
-    this.hiddenIf = function(condition) {
-      return this.shownIf(!condition);
+    this.hideIf = function(condition) {
+      return this.showIf(!condition);
     };
 
     let smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
-    this.shownIfSmall = {
+    this.showIfSmall = {
       [`@media (min-width: ${smallPlusOne})`]: {
         display: 'none'
       }
     };
 
-    this.hiddenIfSmall = {
+    this.hideIfSmall = {
       [`@media (max-width: ${theme.smallBreakpoint})`]: {
         display: 'none'
       }
     };
 
     let mediumPlusOne = reduceCSSCalc(`calc(${theme.mediumBreakpoint} + 1px)`);
-    this.shownIfMedium = {
+    this.showIfMedium = {
       [`@media (min-width: ${mediumPlusOne})`]: {
         display: 'none'
       }
     };
 
-    this.hiddenIfMedium = {
+    this.hideIfMedium = {
       [`@media (max-width: ${theme.mediumBreakpoint})`]: {
         display: 'none'
       }
     };
 
     let largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
-    this.shownIfLarge = {
+    this.showIfLarge = {
       [`@media (min-width: ${largePlusOne})`]: {
         display: 'none'
       }
     };
 
-    this.hiddenIfLarge = {
+    this.hideIfLarge = {
       [`@media (max-width: ${theme.largeBreakpoint})`]: {
         display: 'none'
       }

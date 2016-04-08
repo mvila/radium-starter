@@ -148,7 +148,7 @@ Here is a just a few useful theme variables:
 
 * Base colors: `primaryColor`, `accentColor`, `primaryTextColor`, `bodyColor`, `borderColor`, `errorColor`, `warningColor`.
 * Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
-* Font sizes: `rootFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
+* Font sizes: `rootFontSize`, `smallFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
 * Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
 * Breakpoints: `smallBreakpoint`, `mediumBreakpoint`, `largeBreakpoint`.
 

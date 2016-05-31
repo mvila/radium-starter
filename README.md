@@ -60,7 +60,7 @@ Once a component is decorated, you can use all the power of [Radium](http://stac
 
 ```javascript
 render() {
-  return <p style={{ ':hover': { color: '#2196F3' }}>Hover me</p>;
+  return <p style={{ ':hover': { color: '#2196F3' } }}>Hover me</p>;
 }
 ```
 

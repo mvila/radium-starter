@@ -25,6 +25,9 @@
   "license": "MIT",
   "homepage": "https://mvila.github.io/radium-starter/",
   "reveal": true,
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "radium-starter",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "The minimum viable layer on top of HTML/CSS (using React and Radium)",
   "keywords": [
     "base",

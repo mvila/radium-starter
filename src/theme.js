@@ -20,21 +20,21 @@ export class Theme extends EventEmitterMixin() {
   @def bodyColor = '#FFF';
   @def borderColor = 'rgba(0,0,0,.12)';
 
-  @def darkPrimaryColor = Color(this.primaryColor).darken(0.3).rgbString();
-  @def lightPrimaryColor = Color(this.primaryColor).lighten(0.6).rgbString();
-  @def darkAccentColor = Color(this.accentColor).darken(0.4).rgbString();
-  @def altBodyColor = Color(this.bodyColor).darken(0.03).rgbString();
-  @def altBorderColor = Color(this.borderColor).opaquer(0.3).rgbString();
+  @def darkPrimaryColor = Color(this.primaryColor).darken(0.3).string();
+  @def lightPrimaryColor = Color(this.primaryColor).lighten(0.6).string();
+  @def darkAccentColor = Color(this.accentColor).darken(0.4).string();
+  @def altBodyColor = Color(this.bodyColor).darken(0.03).string();
+  @def altBorderColor = Color(this.borderColor).opaquer(0.3).string();
 
   @def baseTextColor = '#000';
-  @def primaryTextColor = Color(this.baseTextColor).alpha(0.87).rgbString();
-  @def secondaryTextColor = Color(this.baseTextColor).alpha(0.54).rgbString();
-  @def mutedTextColor = Color(this.baseTextColor).alpha(0.38).rgbString();
+  @def primaryTextColor = Color(this.baseTextColor).alpha(0.87).string();
+  @def secondaryTextColor = Color(this.baseTextColor).alpha(0.54).string();
+  @def mutedTextColor = Color(this.baseTextColor).alpha(0.38).string();
 
   @def baseInverseTextColor = '#FFF';
-  @def inversePrimaryTextColor = Color(this.baseInverseTextColor).alpha(1).rgbString();
-  @def inverseSecondaryTextColor = Color(this.baseInverseTextColor).alpha(0.7).rgbString();
-  @def inverseMutedTextColor = Color(this.baseInverseTextColor).alpha(0.5).rgbString();;
+  @def inversePrimaryTextColor = Color(this.baseInverseTextColor).alpha(1).string();
+  @def inverseSecondaryTextColor = Color(this.baseInverseTextColor).alpha(0.7).string();
+  @def inverseMutedTextColor = Color(this.baseInverseTextColor).alpha(0.5).string();;
 
   @def errorColor = '#F44336'; // Material Design Red 500
   @def warningColor = '#FF9800'; // Material Design Orange 500

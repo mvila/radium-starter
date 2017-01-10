@@ -110,7 +110,7 @@ class Reboot {
       },
 
       'input::placeholder, textarea::placeholder': { // From bootstrap/scss/_forms.scss
-        color: 'inputPlaceholderColor',
+        color: theme.inputPlaceholderColor,
         opacity: 1
       },
 

@@ -2,21 +2,22 @@
 
 import Radium from 'radium';
 import React from 'react';
+import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 
 @Radium
 export class Button extends React.Component {
   static propTypes = {
-    rsSmall: React.PropTypes.bool,
-    rsLarge: React.PropTypes.bool,
-    rsPrimary: React.PropTypes.bool,
-    rsAccent: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    style: React.PropTypes.object
+    rsSmall: PropTypes.bool,
+    rsLarge: PropTypes.bool,
+    rsPrimary: PropTypes.bool,
+    rsAccent: PropTypes.bool,
+    disabled: PropTypes.bool,
+    style: PropTypes.object
   };
 
   static contextTypes = {
-    theme: React.PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired
   };
 
   get validity() {
@@ -26,8 +27,10 @@ export class Button extends React.Component {
   get value() {
     return this.domElement.value;
   }
+
   set value(val) {
-    return this.domElement.value = val;
+    this.domElement.value = val;
+    return val;
   }
 
   blur() {
@@ -51,9 +54,12 @@ export class Button extends React.Component {
   }
 
   render() {
-    let { theme } = this.context;
+    const {theme} = this.context;
 
-    let xPadding, yPadding, fontSize, borderRadius;
+    let xPadding;
+    let yPadding;
+    let fontSize;
+    let borderRadius;
     if (this.props.rsSmall) {
       xPadding = theme.smallButtonXPadding;
       yPadding = theme.smallButtonYPadding;
@@ -71,7 +77,11 @@ export class Button extends React.Component {
       borderRadius = theme.borderRadius;
     }
 
-    let color, backgroundColor, borderColor, hoveredBackgroundColor, hoveredBorderColor;
+    let color;
+    let backgroundColor;
+    let borderColor;
+    let hoveredBackgroundColor;
+    let hoveredBorderColor;
     if (this.props.rsPrimary) {
       color = theme.primaryButtonTextColor;
       backgroundColor = theme.primaryButtonBackgroundColor;
@@ -134,8 +144,16 @@ export class Button extends React.Component {
 
     style = [style, this.props.style];
 
-    let props = omit(this.props, ['rsSmall', 'rsLarge', 'rsPrimary', 'rsAccent', 'style']);
-    return <button style={style} {...props} ref={element => this.domElement = element} />;
+    const props = omit(this.props, ['rsSmall', 'rsLarge', 'rsPrimary', 'rsAccent', 'style']);
+    return (
+      <button
+        style={style}
+        {...props}
+        ref={element => {
+          this.domElement = element;
+        }}
+      />
+    );
   }
 }
 

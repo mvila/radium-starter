@@ -3,7 +3,7 @@
 import pathModule from 'path';
 import Builder from '../builder';
 
-let builder = new Builder({
+const builder = new Builder({
   sourceDir: pathModule.join(__dirname, 'src'),
   targetDir: pathModule.join(__dirname, 'dist'),
   htmlIndexFilenames: ['index.html'],

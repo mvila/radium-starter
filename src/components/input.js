@@ -10,8 +10,10 @@ export class Input extends Control {
   get checked() {
     return this.domElement.checked;
   }
+
   set checked(val) {
-    return this.domElement.checked = val;
+    this.domElement.checked = val;
+    return val;
   }
 
   get files() {
@@ -21,15 +23,19 @@ export class Input extends Control {
   get valueAsDate() {
     return this.domElement.valueAsDate;
   }
+
   set valueAsDate(val) {
-    return this.domElement.valueAsDate = val;
+    this.domElement.valueAsDate = val;
+    return val;
   }
 
   get valueAsNumber() {
     return this.domElement.valueAsNumber;
   }
+
   set valueAsNumber(val) {
-    return this.domElement.valueAsNumber = val;
+    this.domElement.valueAsNumber = val;
+    return val;
   }
 
   click() {

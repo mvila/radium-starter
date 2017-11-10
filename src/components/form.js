@@ -8,14 +8,15 @@ import clone from 'lodash/clone';
 export class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { submitted: false };
+    this.state = {submitted: false};
   }
 
   get submitted() {
     return this.state.submitted;
   }
+
   set submitted(value) {
-    this.setState({ submitted: value });
+    this.setState({submitted: value});
   }
 
   checkValidity() {
@@ -36,30 +37,48 @@ export class Form extends React.Component {
 
   handleOnSubmit(event) {
     if (event.target.checkValidity) {
-      if (!event.target.checkValidity()) { // For Safari
-        if (!this.submitted) this.submitted = true;
+      if (!event.target.checkValidity()) {
+        // For Safari
+        if (!this.submitted) {
+          this.submitted = true;
+        }
         event.preventDefault();
         return;
       }
     }
-    if (this.originalOnSubmit) this.originalOnSubmit(event);
-    if (this.submitted) this.submitted = false;
+    if (this.originalOnSubmit) {
+      this.originalOnSubmit(event);
+    }
+    if (this.submitted) {
+      this.submitted = false;
+    }
   }
 
   render() {
-    let props = clone(this.props);
+    const props = clone(this.props);
 
-    if (props.onSubmit) this.originalOnSubmit = props.onSubmit;
+    if (props.onSubmit) {
+      this.originalOnSubmit = props.onSubmit;
+    }
     props.onSubmit = this.handleOnSubmit.bind(this);
 
     if (this.submitted) {
       let className = props.className || '';
-      if (className) className += ' ';
+      if (className) {
+        className += ' ';
+      }
       className += 'submitted';
       props.className = className;
     }
 
-    return <form {...props} ref={element => this.domElement = element} />;
+    return (
+      <form
+        {...props}
+        ref={element => {
+          this.domElement = element;
+        }}
+      />
+    );
   }
 }
 

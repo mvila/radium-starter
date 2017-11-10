@@ -3,25 +3,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import pick from 'lodash/pick';
-import { RadiumStarterRoot, Theme } from '../../src';
+import {RadiumStarterRoot, Theme} from '../../src';
 import Page from './page';
+import pkg from '../../package.json';
 
 class Application {
   constructor() {
     this.name = 'radium-starter-demo';
     this.displayName = 'Radium Starter Demo';
+    this.version = pkg.version;
 
     this.theme = new Theme();
 
     this.themes = {
-      'default': pick(this.theme, [
+      default: pick(this.theme, [
         'bodyColor',
         'borderColor',
         'baseTextColor',
         'baseInverseTextColor'
       ]),
 
-      'inverse': {
+      inverse: {
         bodyColor: '#000',
         borderColor: 'rgba(255,255,255,.3)',
         baseTextColor: '#FFF',
@@ -47,6 +49,6 @@ class Application {
   }
 }
 
-let app = new Application();
+const app = new Application();
 
 app.run();

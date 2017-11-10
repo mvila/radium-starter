@@ -5,7 +5,7 @@ import reduceCSSCalc from 'reduce-css-calc';
 
 class Styles {
   constructor(theme) {
-    let keys = [
+    const keys = [
       'primaryColor',
       'darkPrimaryColor',
       'lightPrimaryColor',
@@ -24,15 +24,15 @@ class Styles {
       'errorColor',
       'warningColor'
     ];
-    for (let key of keys) {
-      let value = theme[key];
-      this[key] = { color: value };
-      this['background' + upperFirst(key)] = { backgroundColor: value };
+    for (const key of keys) {
+      const value = theme[key];
+      this[key] = {color: value};
+      this['background' + upperFirst(key)] = {backgroundColor: value};
     }
 
-    this.block = { display: 'block' };
-    this.inline = { display: 'inline' };
-    this.inlineBlock = { display: 'inline-block' };
+    this.block = {display: 'block'};
+    this.inline = {display: 'inline'};
+    this.inlineBlock = {display: 'inline-block'};
 
     this.noMargins = {
       marginTop: 0,
@@ -79,11 +79,13 @@ class Styles {
       borderColor: theme.borderColor
     };
 
-    this.topBorder = [{
-      borderTopWidth: theme.borderWidth,
-      borderTopStyle: 'solid',
-      borderTopColor: theme.borderColor
-    }];
+    this.topBorder = [
+      {
+        borderTopWidth: theme.borderWidth,
+        borderTopStyle: 'solid',
+        borderTopColor: theme.borderColor
+      }
+    ];
 
     this.rightBorder = {
       borderRightWidth: theme.borderWidth,
@@ -112,15 +114,15 @@ class Styles {
       listStyle: 'none'
     };
 
-    this.showIf = function(condition) {
-      return !condition ? { display: 'none' } : undefined;
+    this.showIf = function (condition) {
+      return !condition ? {display: 'none'} : undefined;
     };
 
-    this.hideIf = function(condition) {
+    this.hideIf = function (condition) {
       return this.showIf(!condition);
     };
 
-    let smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
+    const smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
     this.showIfSmall = {
       [`@media (min-width: ${smallPlusOne})`]: {
         display: 'none'
@@ -133,7 +135,7 @@ class Styles {
       }
     };
 
-    let mediumPlusOne = reduceCSSCalc(`calc(${theme.mediumBreakpoint} + 1px)`);
+    const mediumPlusOne = reduceCSSCalc(`calc(${theme.mediumBreakpoint} + 1px)`);
     this.showIfMedium = {
       [`@media (min-width: ${mediumPlusOne})`]: {
         display: 'none'
@@ -146,7 +148,7 @@ class Styles {
       }
     };
 
-    let largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
+    const largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
     this.showIfLarge = {
       [`@media (min-width: ${largePlusOne})`]: {
         display: 'none'

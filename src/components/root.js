@@ -1,7 +1,8 @@
 'use strict';
 
 import React from 'react';
-import { StyleRoot, Style } from 'radium';
+import PropTypes from 'prop-types';
+import {StyleRoot, Style} from 'radium';
 import clone from 'lodash/clone';
 import mergeWith from 'lodash/mergeWith';
 import debounce from 'lodash/debounce';
@@ -11,24 +12,18 @@ import Styles from '../styles';
 
 export class RadiumStarterRoot extends React.Component {
   static propTypes = {
-    theme: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.func
-    ]),
-    styles: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.func
-    ]),
-    children: React.PropTypes.node.isRequired
+    theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    styles: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    children: PropTypes.node.isRequired
   };
 
   static childContextTypes = {
-    theme: React.PropTypes.object,
-    styles: React.PropTypes.object
+    theme: PropTypes.object,
+    styles: PropTypes.object
   };
 
   getChildContext() {
-    return { theme: this.state.theme, styles: this.styles };
+    return {theme: this.state.theme, styles: this.styles};
   }
 
   constructor(props) {
@@ -40,7 +35,7 @@ export class RadiumStarterRoot extends React.Component {
     } else {
       theme = new Theme(this.props.theme);
     }
-    this.state = { theme };
+    this.state = {theme};
 
     this.updateComputedState();
   }
@@ -69,22 +64,25 @@ export class RadiumStarterRoot extends React.Component {
       } else {
         customStyles = clone(customStyles);
       }
-      for (let key of Object.keys(customStyles)) {
-        let value = customStyles[key];
+      for (const key of Object.keys(customStyles)) {
+        const value = customStyles[key];
         if (typeof value === 'function') {
           customStyles[key] = value(this.state.theme, this.styles);
         }
       }
       mergeWith(this.styles, customStyles, (objValue, srcValue) => {
-        let objValueIsArray = Array.isArray(objValue);
-        let srcValueIsArray = Array.isArray(srcValue);
+        const objValueIsArray = Array.isArray(objValue);
+        const srcValueIsArray = Array.isArray(srcValue);
         if (objValueIsArray || srcValueIsArray) {
-          if (!objValueIsArray) objValue = [objValue];
-          if (!srcValueIsArray) srcValue = [srcValue];
+          if (!objValueIsArray) {
+            objValue = [objValue];
+          }
+          if (!srcValueIsArray) {
+            srcValue = [srcValue];
+          }
           return objValue.concat(srcValue);
-        } else {
-          return undefined;
         }
+        return undefined;
       });
     }
   }

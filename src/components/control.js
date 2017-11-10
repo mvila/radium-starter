@@ -2,45 +2,51 @@
 
 import Radium from 'radium';
 import React from 'react';
+import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 
 @Radium
 export class Control extends React.Component {
   static propTypes = {
-    rsSmall: React.PropTypes.bool,
-    rsLarge: React.PropTypes.bool,
-    rsAutoSelect: React.PropTypes.bool,
-    rsCustomValidity: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    readonly: React.PropTypes.bool,
-    style: React.PropTypes.object
+    rsSmall: PropTypes.bool,
+    rsLarge: PropTypes.bool,
+    rsAutoSelect: PropTypes.bool,
+    rsCustomValidity: PropTypes.string,
+    disabled: PropTypes.bool,
+    readonly: PropTypes.bool,
+    style: PropTypes.object
   };
 
   static contextTypes = {
-    theme: React.PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { actualProps: this.createActualProps(props) };
+    this.state = {actualProps: this.createActualProps(props)};
   }
 
   componentDidMount() {
-    if (this.props.rsAutoSelect) this.select();
+    if (this.props.rsAutoSelect) {
+      this.select();
+    }
     this.updateCustomValidity(this.props.rsCustomValidity);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ actualProps: this.createActualProps(nextProps) });
+    this.setState({actualProps: this.createActualProps(nextProps)});
     this.updateCustomValidity(nextProps.rsCustomValidity);
   }
 
   createActualProps(props) {
-    let { theme } = this.context;
+    const {theme} = this.context;
 
-    let actualProps = omit(props, ['rsSmall', 'rsLarge', 'rsAutoSelect', 'rsCustomValidity']);
+    const actualProps = omit(props, ['rsSmall', 'rsLarge', 'rsAutoSelect', 'rsCustomValidity']);
 
-    let xPadding, yPadding, fontSize, borderRadius;
+    let xPadding;
+    let yPadding;
+    let fontSize;
+    let borderRadius;
     if (props.rsSmall) {
       xPadding = theme.smallInputXPadding;
       yPadding = theme.smallInputYPadding;
@@ -58,7 +64,7 @@ export class Control extends React.Component {
       borderRadius = theme.borderRadius;
     }
 
-    let style = {
+    const style = {
       paddingTop: yPadding,
       paddingRight: xPadding,
       paddingBottom: yPadding,
@@ -92,13 +98,15 @@ export class Control extends React.Component {
 
     actualProps.style = [style, actualProps.style];
 
-    actualProps.ref = element => this.domElement = element;
+    actualProps.ref = element => {
+      this.domElement = element;
+    };
 
     return actualProps;
   }
 
   updateCustomValidity(value) {
-    if (value != null) {
+    if (value !== undefined) {
       if (value !== this._previousCustomValidity) {
         this.domElement.setCustomValidity(value);
         this._previousCustomValidity = value;
@@ -110,7 +118,7 @@ export class Control extends React.Component {
     let validationMessage;
     if (this.domElement && this.domElement.validity && this.domElement.validity.customError) {
       if (this.domElement.form) {
-        let classNames = this.domElement.form.className.split(' ');
+        const classNames = this.domElement.form.className.split(' ');
         if (classNames.includes('submitted')) {
           validationMessage = this.domElement.validationMessage;
         }
@@ -120,10 +128,10 @@ export class Control extends React.Component {
   }
 
   render() {
-    return ( // TODO: use a tooltip to display the validation message
+    return (
+      // TODO: use a tooltip to display the validation message
       <span>
-        {React.createElement(this.constructor.tagName, this.state.actualProps)}
-        {' '}
+        {React.createElement(this.constructor.tagName, this.state.actualProps)}{' '}
         <span>{this.getValidationMessage()}</span>
       </span>
     );
@@ -138,8 +146,10 @@ export class Control extends React.Component {
   get value() {
     return this.domElement.value;
   }
+
   set value(val) {
-    return this.domElement.value = val;
+    this.domElement.value = val;
+    return val;
   }
 
   blur() {

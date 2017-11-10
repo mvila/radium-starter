@@ -109,12 +109,14 @@ class Reboot {
         touchAction: 'manipulation'
       },
 
-      'input::placeholder, textarea::placeholder': { // From bootstrap/scss/_forms.scss
+      'input::placeholder, textarea::placeholder': {
+        // From bootstrap/scss/_forms.scss
         color: theme.inputPlaceholderColor,
         opacity: 1
       },
 
-      'select::-ms-expand': { // From bootstrap/scss/_forms.scss
+      'select::-ms-expand': {
+        // From bootstrap/scss/_forms.scss
         backgroundColor: 'transparent',
         border: 0
       },

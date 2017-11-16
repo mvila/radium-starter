@@ -7,20 +7,30 @@ import reduceCSSCalc from 'reduce-css-calc';
 export class Theme extends EventEmitterMixin() {
   constructor(customAttributes = {}) {
     super();
+
     if (typeof customAttributes === 'function') {
       customAttributes = customAttributes(this);
     }
+
     this.customAttributes = customAttributes;
+
+    for (const name of Object.keys(customAttributes)) {
+      if (!(name in this)) {
+        const descriptor = {};
+        def(this, name, descriptor);
+        Object.defineProperty(this, name, descriptor);
+      }
+    }
   }
 
   // --- Base colors ---
 
+  // Material Design Blue 500
   @def primaryColor = '#2196F3';
 
-  // Material Design Blue 500
+  // Material Design Red A200
   @def accentColor = '#FF5252';
 
-  // Material Design Red A200
   @def bodyColor = '#FFF';
 
   @def borderColor = 'rgba(0,0,0,.12)';
@@ -38,6 +48,11 @@ export class Theme extends EventEmitterMixin() {
   @def
   darkAccentColor = Color(this.accentColor)
     .darken(0.4)
+    .string();
+
+  @def
+  lightAccentColor = Color(this.accentColor)
+    .lighten(0.3)
     .string();
 
   @def
@@ -84,12 +99,11 @@ export class Theme extends EventEmitterMixin() {
     .alpha(0.5)
     .string();
 
+  // Material Design Red 500
   @def errorColor = '#F44336';
 
-  // Material Design Red 500
-  @def warningColor = '#FF9800';
-
   // Material Design Orange 500
+  @def warningColor = '#FF9800';
 
   // --- Links ---
 
@@ -116,28 +130,26 @@ export class Theme extends EventEmitterMixin() {
 
   @def baseFontSize = '1rem';
 
-  @def modularScaleRatio = 1.2;
-
   // http://www.modularscale.com/?1&em&1.2&web&text
+
+  @def modularScaleRatio = 1.2;
 
   modularScale(value, base = this.baseFontSize, ratio = this.modularScaleRatio) {
     const multiplier = Math.pow(ratio, value);
     return reduceCSSCalc(`calc(${base} * ${multiplier})`);
   }
 
+  // 1.44
   @def baseLineHeight = this.modularScale(2, 1);
 
-  // 1.44
+  // 1.2
   @def smallLineHeight = this.modularScale(1, 1);
 
-  // 1.2
-
+  // '.833rem'
   @def smallFontSize = this.modularScale(-1);
 
-  // '.833rem'
-  @def largeFontSize = this.modularScale(1);
-
   // '1.2rem'
+  @def largeFontSize = this.modularScale(1);
 
   @def headingsMarginBottom = '1rem';
 
@@ -149,24 +161,23 @@ export class Theme extends EventEmitterMixin() {
 
   @def headingsColor = 'inherit';
 
+  // '2.488rem'
   @def h1FontSize = this.modularScale(5);
 
-  // '2.488rem'
+  // '2.074rem'
   @def h2FontSize = this.modularScale(4);
 
-  // '2.074rem'
+  // '1.728rem'
   @def h3FontSize = this.modularScale(3);
 
-  // '1.728rem'
+  // '1.44rem'
   @def h4FontSize = this.modularScale(2);
 
-  // '1.44rem'
+  // '1.2rem'
   @def h5FontSize = this.modularScale(1);
 
-  // '1.2rem'
-  @def h6FontSize = this.modularScale(0);
-
   // '1rem'
+  @def h6FontSize = this.modularScale(0);
 
   // --- Borders ---
 
@@ -191,6 +202,8 @@ export class Theme extends EventEmitterMixin() {
   @def codeBackgroundColor = this.altBodyColor;
 
   @def preColor = this.secondaryTextColor;
+
+  @def preBackgroundColor = undefined;
 
   // --- Buttons ---
 

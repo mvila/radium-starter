@@ -59,7 +59,8 @@ class Elements {
         marginTop: 0,
         marginBottom: '1rem',
         fontSize: '90%',
-        color: theme.preColor
+        color: theme.preColor,
+        backgroundColor: theme.preBackgroundColor
       },
 
       'pre code': {

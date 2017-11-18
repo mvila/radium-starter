@@ -291,9 +291,21 @@ export class Theme extends EventEmitterMixin() {
 
   @def smallBreakpoint = '640px';
 
+  @def smallBreakpointMinusOne = reduceCSSCalc(`calc(${this.smallBreakpoint} - 1px)`);
+
+  @def smallBreakpointPlusOne = reduceCSSCalc(`calc(${this.smallBreakpoint} + 1px)`);
+
   @def mediumBreakpoint = '1024px';
 
+  @def mediumBreakpointMinusOne = reduceCSSCalc(`calc(${this.mediumBreakpoint} - 1px)`);
+
+  @def mediumBreakpointPlusOne = reduceCSSCalc(`calc(${this.mediumBreakpoint} + 1px)`);
+
   @def largeBreakpoint = '1440px';
+
+  @def largeBreakpointMinusOne = reduceCSSCalc(`calc(${this.largeBreakpoint} - 1px)`);
+
+  @def largeBreakpointPlusOne = reduceCSSCalc(`calc(${this.largeBreakpoint} + 1px)`);
 }
 
 function def(target, name, descriptor) {

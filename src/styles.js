@@ -1,7 +1,6 @@
 'use strict';
 
 import upperFirst from 'lodash/upperFirst';
-import reduceCSSCalc from 'reduce-css-calc';
 
 class Styles {
   constructor(theme) {
@@ -122,9 +121,8 @@ class Styles {
       return this.showIf(!condition);
     };
 
-    const smallPlusOne = reduceCSSCalc(`calc(${theme.smallBreakpoint} + 1px)`);
     this.showIfSmall = {
-      [`@media (min-width: ${smallPlusOne})`]: {
+      [`@media (min-width: ${theme.smallBreakpointPlusOne})`]: {
         display: 'none'
       }
     };
@@ -135,9 +133,8 @@ class Styles {
       }
     };
 
-    const mediumPlusOne = reduceCSSCalc(`calc(${theme.mediumBreakpoint} + 1px)`);
     this.showIfMedium = {
-      [`@media (min-width: ${mediumPlusOne})`]: {
+      [`@media (min-width: ${theme.mediumBreakpointPlusOne})`]: {
         display: 'none'
       }
     };
@@ -148,9 +145,8 @@ class Styles {
       }
     };
 
-    const largePlusOne = reduceCSSCalc(`calc(${theme.largeBreakpoint} + 1px)`);
     this.showIfLarge = {
-      [`@media (min-width: ${largePlusOne})`]: {
+      [`@media (min-width: ${theme.largeBreakpointPlusOne})`]: {
         display: 'none'
       }
     };

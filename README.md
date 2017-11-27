@@ -42,13 +42,13 @@ ReactDOM.render(
 );
 ```
 
-Then, use the `RadiumStarter` decorator:
+Then, use `withRadiumStarter` decorator:
 
 ```javascript
 import React from 'react';
-import { RadiumStarter, Button } from 'radium-starter';
+import { withRadiumStarter, Button } from 'radium-starter';
 
-@RadiumStarter
+@withRadiumStarter
 export class Main extends React.Component {
   render() {
     return <p>Hello, World!</p>;
@@ -68,7 +68,7 @@ render() {
 
 ```javascript
 render() {
-  let s = this.styles;
+  const s = this.props.styles;
   return <div style={[s.primaryColor, s.bold, s.border]}>Hello, World!</div>;
 }
 ```
@@ -77,7 +77,7 @@ Theme variables:
 
 ```javascript
 render() {
-  let t = this.theme;
+  const t = this.props.theme;
   return <div style={{ color: t.errorColor }}>An error occurred</div>;
 }
 ```
@@ -105,7 +105,7 @@ But you can do even better, instead of passing a POJO object to `RadiumStarterRo
 ```javascript
 import { RadiumStarterRoot, Theme } from 'radium-starter';
 
-let theme = new Theme({ primaryColor: '#2196F3' });
+const theme = new Theme({ primaryColor: '#2196F3' });
 
 ReactDOM.render(
   <RadiumStarterRoot theme={theme}>
@@ -126,19 +126,19 @@ theme.primaryColor = '#FF5252';
 One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another, you can specify a function:
 
 ```javascript
-let theme = new Theme({ linkColor: theme => theme.accentColor });
+const theme = new Theme({ linkColor: theme => theme.accentColor });
 ```
 
-Components decorated by `RadiumStarter` automatically get a `theme` property providing you an access to the current theme instance:
+Components decorated by `withRadiumStarter` automatically get a `theme` property providing you an access to the current theme instance:
 
 ```javascript
 import React from 'react';
-import { RadiumStarter } from 'radium-starter';
+import { withRadiumStarter } from 'radium-starter';
 
-@RadiumStarter
+@withRadiumStarter
 export class Main extends React.Component {
   render() {
-    let t = this.theme; // Get the current theme
+    const t = this.props.theme; // Get the current theme
     return <div style={{ fontSize: t.h1FontSize }}>Special title</div>;
   }
 }
@@ -156,12 +156,12 @@ Many other variables are available, please check the [theme.js](https://github.c
 
 ## Built-in styles
 
-Components decorated by `RadiumStarter` get a `styles` property containing many convenient styles usable with the `style` attribute of HTML elements.
+Components decorated by `withRadiumStarter` get a `styles` property containing many convenient styles usable with the `style` attribute of HTML elements.
 
 Example :
 
 ```javascript
-<span style={this.styles.primaryColor}>Hello, World!</span>
+<span style={this.props.styles.primaryColor}>Hello, World!</span>
 ```
 
 Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combine several styles with an array:
@@ -169,7 +169,7 @@ Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combin
 Example :
 
 ```javascript
-<span style={[this.styles.bold, this.styles.italic]}>Hi</span>
+<span style={[this.props.styles.bold, this.props.styles.italic]}>Hi</span>
 ```
 
 ### Text colors
@@ -179,7 +179,7 @@ Convenient styles to define text color (CSS `color` property): `primaryColor`, `
 Example :
 
 ```javascript
-<span style={[this.styles.warningColor]}>Notice</span>
+<span style={[this.props.styles.warningColor]}>Notice</span>
 ```
 
 ### Background colors
@@ -189,7 +189,7 @@ Convenient styles to define background color (CSS `background-color` property): 
 Example :
 
 ```javascript
-<span style={[this.styles.backgroundPrimaryColor]}>Bonjour</span>
+<span style={[this.props.styles.backgroundPrimaryColor]}>Bonjour</span>
 ```
 
 ### Text styling

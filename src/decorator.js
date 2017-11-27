@@ -1,8 +1,26 @@
 'use strict';
 
+import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
+export function withRadiumStarter(WrappedComponent) {
+  WrappedComponent = Radium(WrappedComponent);
+
+  return class RadiumStarterHOC extends React.Component {
+    static contextTypes = {
+      theme: PropTypes.object.isRequired,
+      styles: PropTypes.object.isRequired
+    };
+
+    render() {
+      const props = {...this.props, theme: this.context.theme, styles: this.context.styles};
+      return <WrappedComponent {...props} />;
+    }
+  };
+}
+
+// DEPRECATED
 export function Decorator(component, radiumConfig) {
   if (typeof component !== 'function') {
     radiumConfig = component;

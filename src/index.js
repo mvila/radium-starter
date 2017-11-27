@@ -1,9 +1,8 @@
 'use strict';
 
-import {Decorator} from './decorator';
+import {withRadiumStarter, Decorator as RadiumStarter} from './decorator';
 
-export const RadiumStarter = Decorator;
-
+export {withRadiumStarter, RadiumStarter};
 export {Theme} from './theme';
 export {RadiumStarterRoot} from './components/root';
 export {Form} from './components/form';

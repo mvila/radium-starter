@@ -2,26 +2,24 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {RadiumStarter, Form, Input, TextArea, Select, Button} from '../../src';
+import {withRadiumStarter, Form, Input, TextArea, Select, Button} from '../../src';
 
-@RadiumStarter
+@withRadiumStarter
 export class Page extends React.Component {
   static propTypes = {
-    app: PropTypes.object.isRequired
+    app: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+    styles: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {password: ''};
-  }
+  state = {password: ''};
 
   switchTheme(event) {
     this.props.app.switchTheme(event.target.value);
   }
 
   render() {
-    const app = this.props.app;
-    const s = this.styles;
+    const {app, styles: s} = this.props;
 
     const title1 = [
       s.inversePrimaryTextColor,

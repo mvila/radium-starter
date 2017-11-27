@@ -3,15 +3,20 @@
 /* eslint-disable react/no-danger */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Style} from 'radium';
-import {RadiumStarter} from '../../src';
+import {withRadiumStarter} from '../../src';
 import prismStyles from './prism-styles';
 
-@RadiumStarter
+@withRadiumStarter
 export class Page extends React.Component {
+  static propTypes = {
+    theme: PropTypes.object.isRequired,
+    styles: PropTypes.object.isRequired
+  };
+
   render() {
-    const t = this.theme;
-    const s = this.styles;
+    const {theme: t, styles: s} = this.props;
 
     const menuStyle = [s.unstyledList];
 

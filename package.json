@@ -50,8 +50,7 @@
     "event-emitter-mixin": "^0.3.8",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "radium-normalize": "^2.0.5",
-    "reduce-css-calc": "^2.1.1"
+    "radium-normalize": "^2.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

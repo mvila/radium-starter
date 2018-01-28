@@ -2,7 +2,6 @@
 
 import EventEmitterMixin from 'event-emitter-mixin';
 import Color from 'color';
-import reduceCSSCalc from 'reduce-css-calc';
 
 export class Theme extends EventEmitterMixin() {
   constructor(customAttributes = {}) {
@@ -136,7 +135,9 @@ export class Theme extends EventEmitterMixin() {
 
   modularScale(value, base = this.baseFontSize, ratio = this.modularScaleRatio) {
     const multiplier = Math.pow(ratio, value);
-    return reduceCSSCalc(`calc(${base} * ${multiplier})`);
+    const number = parseFloat(base);
+    const unit = String(base).slice(String(number).length);
+    return (number * multiplier) + unit;
   }
 
   // 1.44
@@ -291,21 +292,21 @@ export class Theme extends EventEmitterMixin() {
 
   @def smallBreakpoint = '640px';
 
-  @def smallBreakpointMinusOne = reduceCSSCalc(`calc(${this.smallBreakpoint} - 1px)`);
+  @def smallBreakpointMinusOne = (parseInt(this.smallBreakpoint, 10) - 1) + 'px';
 
-  @def smallBreakpointPlusOne = reduceCSSCalc(`calc(${this.smallBreakpoint} + 1px)`);
+  @def smallBreakpointPlusOne = (parseInt(this.smallBreakpoint, 10) + 1) + 'px';
 
   @def mediumBreakpoint = '1024px';
 
-  @def mediumBreakpointMinusOne = reduceCSSCalc(`calc(${this.mediumBreakpoint} - 1px)`);
+  @def mediumBreakpointMinusOne = (parseInt(this.mediumBreakpoint, 10) - 1) + 'px';
 
-  @def mediumBreakpointPlusOne = reduceCSSCalc(`calc(${this.mediumBreakpoint} + 1px)`);
+  @def mediumBreakpointPlusOne = (parseInt(this.mediumBreakpoint, 10) + 1) + 'px';;
 
   @def largeBreakpoint = '1440px';
 
-  @def largeBreakpointMinusOne = reduceCSSCalc(`calc(${this.largeBreakpoint} - 1px)`);
+  @def largeBreakpointMinusOne = (parseInt(this.largeBreakpoint, 10) - 1) + 'px';
 
-  @def largeBreakpointPlusOne = reduceCSSCalc(`calc(${this.largeBreakpoint} + 1px)`);
+  @def largeBreakpointPlusOne = (parseInt(this.largeBreakpoint, 10) + 1) + 'px';
 }
 
 function def(target, name, descriptor) {

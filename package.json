@@ -49,7 +49,6 @@
     "color": "^2.0.1",
     "event-emitter-mixin": "^0.3.8",
     "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
     "radium-normalize": "^2.0.5"
   },
   "devDependencies": {
@@ -74,6 +73,7 @@
     "ncp": "^2.0.0",
     "node-watch": "^0.5.5",
     "prismjs": "^1.8.4",
+    "prop-types": "^15.6.0",
     "radium": "^0.19.6",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",

@@ -10,8 +10,10 @@ class Styles {
       'lightPrimaryColor',
       'accentColor',
       'darkAccentColor',
-      'bodyColor',
-      'altBodyColor',
+      'backgroundColor',
+      'altBackgroundColor',
+      'bodyColor', // DEPRECATED
+      'altBodyColor', // DEPRECATED
       'borderColor',
       'altBorderColor',
       'primaryTextColor',

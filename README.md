@@ -146,7 +146,7 @@ export class Main extends React.Component {
 
 Here is a just a few useful theme variables:
 
-* Base colors: `primaryColor`, `accentColor`, `primaryTextColor`, `bodyColor`, `borderColor`, `errorColor`, `warningColor`.
+* Base colors: `primaryColor`, `accentColor`, `primaryTextColor`, `backgroundColor`, `borderColor`, `errorColor`, `warningColor`.
 * Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
 * Font sizes: `rootFontSize`, `smallFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
 * Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
@@ -174,7 +174,7 @@ Example :
 
 ### Text colors
 
-Convenient styles to define text color (CSS `color` property): `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `bodyColor`, `altBodyColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`.
+Convenient styles to define text color (CSS `color` property): `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `backgroundColor`, `altBackgroundColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`.
 
 Example :
 
@@ -184,7 +184,7 @@ Example :
 
 ### Background colors
 
-Convenient styles to define background color (CSS `background-color` property): `backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBodyColor`, `backgroundAltBodyColor`, `backgroundErrorColor`, `backgroundWarningColor`.
+Convenient styles to define background color (CSS `background-color` property): `backgroundPrimaryColor`, `backgroundDarkPrimaryColor`, `backgroundLightPrimaryColor`, `backgroundAccentColor`, `backgroundDarkAccentColor`, `backgroundBackgroundColor`, `backgroundAltBackgroundColor`, `backgroundErrorColor`, `backgroundWarningColor`.
 
 Example :
 

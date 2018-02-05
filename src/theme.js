@@ -30,7 +30,9 @@ export class Theme extends EventEmitterMixin() {
   // Material Design Red A200
   @def accentColor = '#FF5252';
 
-  @def bodyColor = '#FFF';
+  @def backgroundColor = '#FFF';
+
+  @def bodyColor = this.backgroundColor; // DEPRECATED
 
   @def borderColor = 'rgba(0,0,0,.12)';
 
@@ -55,9 +57,11 @@ export class Theme extends EventEmitterMixin() {
     .string();
 
   @def
-  altBodyColor = Color(this.bodyColor)
+  altBackgroundColor = Color(this.backgroundColor)
     .darken(0.03)
     .string();
+
+  @def altBodyColor = this.altBackgroundColor; // DEPRECATED
 
   @def
   altBorderColor = Color(this.borderColor)
@@ -200,7 +204,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def codeColor = this.darkPrimaryColor;
 
-  @def codeBackgroundColor = this.altBodyColor;
+  @def codeBackgroundColor = this.altBackgroundColor;
 
   @def preColor = this.secondaryTextColor;
 
@@ -226,11 +230,11 @@ export class Theme extends EventEmitterMixin() {
 
   @def buttonTextColor = this.primaryTextColor;
 
-  @def buttonBackgroundColor = this.bodyColor;
+  @def buttonBackgroundColor = this.backgroundColor;
 
   @def buttonBorderColor = this.borderColor;
 
-  @def hoveredButtonBackgroundColor = this.altBodyColor;
+  @def hoveredButtonBackgroundColor = this.altBackgroundColor;
 
   @def hoveredButtonBorderColor = this.altBorderColor;
 
@@ -260,7 +264,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def inputTextColor = this.primaryTextColor;
 
-  @def inputBackgroundColor = this.bodyColor;
+  @def inputBackgroundColor = this.backgroundColor;
 
   @def inputBorderWidth = this.borderWidth;
 
@@ -270,7 +274,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def focusedInputBorderColor = this.primaryColor;
 
-  @def disabledInputBackgroundColor = this.altBodyColor;
+  @def disabledInputBackgroundColor = this.altBackgroundColor;
 
   @def inputXPadding = '.625rem';
 

@@ -33,10 +33,12 @@ export class Control extends React.Component {
     this.updateCustomValidity(this.props.rsCustomValidity);
   }
 
-  componentWillReceiveProps(nextProps) {
+  /* eslint-disable camelcase */
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({actualProps: this.createActualProps(nextProps)});
     this.updateCustomValidity(nextProps.rsCustomValidity);
   }
+  /* eslint-enable camelcase */
 
   createActualProps(props) {
     const {theme} = this.context;

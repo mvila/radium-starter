@@ -71,14 +71,18 @@ export class Theme extends EventEmitterMixin() {
   @def baseTextColor = '#000';
 
   @def
-  primaryTextColor = Color(this.baseTextColor)
+  textColor = Color(this.baseTextColor)
     .alpha(0.87)
     .string();
 
+  @def primaryTextColor = this.textColor; // DEPRECATED
+
   @def
-  secondaryTextColor = Color(this.baseTextColor)
+  altTextColor = Color(this.baseTextColor)
     .alpha(0.54)
     .string();
+
+  @def secondaryTextColor = this.altTextColor; // DEPRECATED
 
   @def
   mutedTextColor = Color(this.baseTextColor)
@@ -88,12 +92,12 @@ export class Theme extends EventEmitterMixin() {
   @def baseInverseTextColor = '#FFF';
 
   @def
-  inversePrimaryTextColor = Color(this.baseInverseTextColor)
+  inverseTextColor = Color(this.baseInverseTextColor)
     .alpha(1)
     .string();
 
   @def
-  inverseSecondaryTextColor = Color(this.baseInverseTextColor)
+  inverseAltTextColor = Color(this.baseInverseTextColor)
     .alpha(0.7)
     .string();
 
@@ -141,7 +145,7 @@ export class Theme extends EventEmitterMixin() {
     const multiplier = Math.pow(ratio, value);
     const number = parseFloat(base);
     const unit = String(base).slice(String(number).length);
-    return (number * multiplier) + unit;
+    return number * multiplier + unit;
   }
 
   // 1.44
@@ -206,7 +210,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def codeBackgroundColor = this.altBackgroundColor;
 
-  @def preColor = this.secondaryTextColor;
+  @def preColor = this.altTextColor;
 
   @def preBackgroundColor = undefined;
 
@@ -228,7 +232,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def largeButtonYPadding = '.75rem';
 
-  @def buttonTextColor = this.primaryTextColor;
+  @def buttonTextColor = this.textColor;
 
   @def buttonBackgroundColor = this.backgroundColor;
 
@@ -238,7 +242,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def hoveredButtonBorderColor = this.altBorderColor;
 
-  @def primaryButtonTextColor = this.inversePrimaryTextColor;
+  @def primaryButtonTextColor = this.inverseTextColor;
 
   @def primaryButtonBackgroundColor = this.primaryColor;
 
@@ -248,7 +252,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def hoveredPrimaryButtonBorderColor = this.hoveredPrimaryButtonBackgroundColor;
 
-  @def accentButtonTextColor = this.inversePrimaryTextColor;
+  @def accentButtonTextColor = this.inverseTextColor;
 
   @def accentButtonBackgroundColor = this.accentColor;
 
@@ -262,7 +266,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def inputLineHeight = this.smallLineHeight;
 
-  @def inputTextColor = this.primaryTextColor;
+  @def inputTextColor = this.textColor;
 
   @def inputBackgroundColor = this.backgroundColor;
 
@@ -296,21 +300,21 @@ export class Theme extends EventEmitterMixin() {
 
   @def smallBreakpoint = '640px';
 
-  @def smallBreakpointMinusOne = (parseInt(this.smallBreakpoint, 10) - 1) + 'px';
+  @def smallBreakpointMinusOne = parseInt(this.smallBreakpoint, 10) - 1 + 'px';
 
-  @def smallBreakpointPlusOne = (parseInt(this.smallBreakpoint, 10) + 1) + 'px';
+  @def smallBreakpointPlusOne = parseInt(this.smallBreakpoint, 10) + 1 + 'px';
 
   @def mediumBreakpoint = '1024px';
 
-  @def mediumBreakpointMinusOne = (parseInt(this.mediumBreakpoint, 10) - 1) + 'px';
+  @def mediumBreakpointMinusOne = parseInt(this.mediumBreakpoint, 10) - 1 + 'px';
 
-  @def mediumBreakpointPlusOne = (parseInt(this.mediumBreakpoint, 10) + 1) + 'px';;
+  @def mediumBreakpointPlusOne = parseInt(this.mediumBreakpoint, 10) + 1 + 'px';
 
   @def largeBreakpoint = '1440px';
 
-  @def largeBreakpointMinusOne = (parseInt(this.largeBreakpoint, 10) - 1) + 'px';
+  @def largeBreakpointMinusOne = parseInt(this.largeBreakpoint, 10) - 1 + 'px';
 
-  @def largeBreakpointPlusOne = (parseInt(this.largeBreakpoint, 10) + 1) + 'px';
+  @def largeBreakpointPlusOne = parseInt(this.largeBreakpoint, 10) + 1 + 'px';
 }
 
 function def(target, name, descriptor) {

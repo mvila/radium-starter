@@ -24,7 +24,7 @@ class Reboot {
         fontFamily: theme.baseFontFamily,
         fontSize: theme.baseFontSize,
         lineHeight: theme.baseLineHeight,
-        color: theme.primaryTextColor,
+        color: theme.textColor,
         backgroundColor: theme.backgroundColor
       },
 
@@ -128,7 +128,7 @@ class Reboot {
       caption: {
         paddingTop: theme.tableCellPadding,
         paddingBottom: theme.tableCellPadding,
-        color: theme.secondaryTextColor,
+        color: theme.altTextColor,
         textAlign: 'left',
         captionSide: 'bottom'
       },

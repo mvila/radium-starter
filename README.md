@@ -1,17 +1,18 @@
-# Radium Starter  [![npm version](https://img.shields.io/npm/v/radium-starter.svg)](https://www.npmjs.com/package/radium-starter)
+# Radium Starter [![npm version](https://img.shields.io/npm/v/radium-starter.svg)](https://www.npmjs.com/package/radium-starter)
 
 The minimum viable layer on top of HTML/CSS (using React and Radium).
 
 <!-- contentBegin -->
+
 ## Introduction
 
 Nope, this is not another CSS framework! This package provides the bare minimum to make HTML/CSS a better world:
 
-- Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
-- Basic styling of HTML elements.
-- Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari.
-- Theme variables (i.e. variables for defining colors, font sizes, etc.)
-- [Radium](http://stack.formidable.com/radium/) for flexible customization and high composability.
+* Normalization (use [Normalize.css](https://necolas.github.io/normalize.css/)).
+* Basic styling of HTML elements.
+* Useful polyfills like [Form validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation) in Safari.
+* Theme variables (i.e. variables for defining colors, font sizes, etc.)
+* [Radium](http://stack.formidable.com/radium/) for flexible customization and high composability.
 
 ## Compatibility
 
@@ -32,62 +33,63 @@ npm install --save radium-starter
 At the root of your application, define a `theme` and use `RadiumStarterRoot` to wrap your main component:
 
 ```javascript
-import { RadiumStarterRoot } from 'radium-starter';
+import {RadiumStarterRoot} from 'radium-starter';
 
 ReactDOM.render(
-  <RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
+  <RadiumStarterRoot theme={{primaryColor: '#2196F3'}}>
     <Main />
   </RadiumStarterRoot>,
   document.getElementById('root')
 );
 ```
 
-Then, use `withRadiumStarter` decorator:
+Then, use the `RadiumStarter` component:
 
 ```javascript
 import React from 'react';
-import { withRadiumStarter, Button } from 'radium-starter';
+import RadiumStarter from 'radium-starter';
 
-@withRadiumStarter
 export class Main extends React.Component {
   render() {
-    return <p>Hello, World!</p>;
+    return (
+      <RadiumStarter>
+        {() => {
+          return <p>Hello, World!</p>;
+        }}
+      </RadiumStarter>
+    );
   }
 }
 ```
 
-Once a component is decorated, you can use all the power of [Radium](http://stack.formidable.com/radium/):
+Once a component is wrapped with `RadiumStarter`, you can use all the power of [Radium](http://stack.formidable.com/radium/):
 
 ```javascript
-render() {
-  return <p style={{ ':hover': { color: '#2196F3' } }}>Hover me</p>;
-}
+<RadiumStarter>
+  {() => {
+    return <p style={{':hover': {color: '#2196F3'}}}>Hover me</p>;
+  }}
+</RadiumStarter>
 ```
 
-... and Radium Starter features, including built-in styles:
+... and Radium Starter features, such as theme variables:
 
 ```javascript
-render() {
-  const s = this.props.styles;
-  return <div style={[s.primaryColor, s.bold, s.border]}>Hello, World!</div>;
-}
+<RadiumStarter>
+  {theme => {
+    return <div style={{color: theme.errorColor}}>An error occurred</div>;
+  }}
+</RadiumStarter>
 ```
 
-Theme variables:
+And built-in styles:
 
 ```javascript
-render() {
-  const t = this.props.theme;
-  return <div style={{ color: t.errorColor }}>An error occurred</div>;
-}
-```
-
-And enhanced HTML elements:
-
-```javascript
-render() {
-  return <Button rsLarge rsPrimary>Sign up</Button>;
-}
+<RadiumStarter>
+  {(theme, styles) => {
+    return <div style={[styles.primaryColor, styles.bold, styles.border]}>Hello, World!</div>;
+  }}
+</RadiumStarter>
 ```
 
 ## Theme variables
@@ -95,7 +97,7 @@ render() {
 Radium Starter provides theme variables with sensible defaults for font sizes, colors, spacing, etc. You can pass a `theme` attribute to the `RadiumStarterRoot` component to customize any variable. For example, if you want to change the primary color, you would do something like that:
 
 ```javascript
-<RadiumStarterRoot theme={{ primaryColor: '#2196F3' }}>
+<RadiumStarterRoot theme={{primaryColor: '#2196F3'}}>
   <Main />
 </RadiumStarterRoot>
 ```
@@ -103,9 +105,9 @@ Radium Starter provides theme variables with sensible defaults for font sizes, c
 But you can do even better, instead of passing a POJO object to `RadiumStarterRoot`, you can pass an instance of the `Theme` class. The advantage of using the `Theme` class is that if you change some theme variables later, all your React components will be automatically re-rendered to reflect the changes. For example:
 
 ```javascript
-import { RadiumStarterRoot, Theme } from 'radium-starter';
+import {RadiumStarterRoot, Theme} from 'radium-starter';
 
-const theme = new Theme({ primaryColor: '#2196F3' });
+const theme = new Theme({primaryColor: '#2196F3'});
 
 ReactDOM.render(
   <RadiumStarterRoot theme={theme}>
@@ -123,45 +125,53 @@ theme.primaryColor = '#FF5252';
 
 ... will automatically re-render everything with the new primary color.
 
-One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another, you can specify a function:
+One last thing, when you create a `Theme` instance, if you need to set a variable based on the value of another variable, you can specify a function:
 
 ```javascript
-const theme = new Theme({ linkColor: theme => theme.accentColor });
+const theme = new Theme({linkColor: theme => theme.accentColor});
 ```
 
-Components decorated by `withRadiumStarter` automatically get a `theme` property providing you an access to the current theme instance:
+Components wrapped with `RadiumStarter` can use the current `theme` instance:
 
 ```javascript
 import React from 'react';
-import { withRadiumStarter } from 'radium-starter';
+import RadiumStarter from 'radium-starter';
 
-@withRadiumStarter
 export class Main extends React.Component {
   render() {
-    const t = this.props.theme; // Get the current theme
-    return <div style={{ fontSize: t.h1FontSize }}>Special title</div>;
+    return (
+      <RadiumStarter>
+        {theme => {
+          return <div style={{fontSize: theme.h1FontSize}}>Special title</div>;
+        }}
+      </RadiumStarter>
+    );
   }
 }
 ```
 
-Here is a just a few useful theme variables:
+Here is a few useful theme variables:
 
-* Base colors: `primaryColor`, `accentColor`, `primaryTextColor`, `backgroundColor`, `borderColor`, `errorColor`, `warningColor`.
+* Base colors: `primaryColor`, `accentColor`, `textColor`, `backgroundColor`, `borderColor`, `errorColor`, `warningColor`.
 * Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
-* Font sizes: `rootFontSize`, `smallFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
-* Line heights:  `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
+* Font sizes: `baseFontSize`, `smallFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
+* Line heights: `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
 * Breakpoints: `smallBreakpoint`, `mediumBreakpoint`, `largeBreakpoint`.
 
 Many other variables are available, please check the [theme.js](https://github.com/mvila/radium-starter/blob/master/src/theme.js) file.
 
 ## Built-in styles
 
-Components decorated by `withRadiumStarter` get a `styles` property containing many convenient styles usable with the `style` attribute of HTML elements.
+Components wrapped with `RadiumStarter` can get the `styles` object which contains many convenient styles usable with the `style` attribute of HTML elements.
 
 Example :
 
 ```javascript
-<span style={this.props.styles.primaryColor}>Hello, World!</span>
+<RadiumStarter>
+  {(theme, styles) => {
+    return <span style={styles.primaryColor}>Hello, World!</span>>;
+  }}
+</RadiumStarter>;
 ```
 
 Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combine several styles with an array:
@@ -169,17 +179,17 @@ Thanks to [Radium](http://stack.formidable.com/radium/) goodness, you can combin
 Example :
 
 ```javascript
-<span style={[this.props.styles.bold, this.props.styles.italic]}>Hi</span>
+<span style={[styles.bold, styles.italic]}>Hi</span>
 ```
 
 ### Text colors
 
-Convenient styles to define text color (CSS `color` property): `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `backgroundColor`, `altBackgroundColor`, `borderColor`, `altBorderColor`, `primaryTextColor`, `secondaryTextColor`, `mutedTextColor`, `inversePrimaryTextColor`, `inverseSecondaryTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`.
+Convenient styles to define text color (CSS `color` property): `primaryColor`, `darkPrimaryColor`, `lightPrimaryColor`, `accentColor`, `darkAccentColor`, `backgroundColor`, `altBackgroundColor`, `borderColor`, `altBorderColor`, `textColor`, `altTextColor`, `mutedTextColor`, `inverseTextColor`, `inverseAltTextColor`, `inverseMutedTextColor`, `errorColor`, `warningColor`.
 
 Example :
 
 ```javascript
-<span style={[this.props.styles.warningColor]}>Notice</span>
+<span style={[styles.warningColor]}>Notice</span>
 ```
 
 ### Background colors
@@ -189,7 +199,7 @@ Convenient styles to define background color (CSS `background-color` property): 
 Example :
 
 ```javascript
-<span style={[this.props.styles.backgroundPrimaryColor]}>Bonjour</span>
+<span style={[styles.backgroundPrimaryColor]}>Bonjour</span>
 ```
 
 ### Text styling
@@ -211,9 +221,9 @@ Example :
 
 ### Responsive tools
 
-* `showIfSmall`/`hideIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (*default:* `640px`).
-* `showIfMedium`/`hideIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (*default:* `1024px`).
-* `showIfLarge`/`hideIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (*default:* `1440px`).
+* `showIfSmall`/`hideIfSmall`: show/hide an HTML element if the viewport width is less/greater than the `smallBreakpoint` theme variable (_default:_ `640px`).
+* `showIfMedium`/`hideIfMedium`: show/hide an HTML element if the viewport width is less/greater than the `mediumBreakpoint` theme variable (_default:_ `1024px`).
+* `showIfLarge`/`hideIfLarge`: show/hide an HTML element if the viewport width is less/greater than the `largeBreakpoint` theme variable (_default:_ `1440px`).
 
 ### Utilities
 
@@ -229,7 +239,7 @@ Check [styles.js](https://github.com/mvila/radium-starter/blob/master/src/styles
 Pass the `styles` attribute to the `RadiumStarterRoot` component to add new styles or customize the existing ones.
 
 ```javascript
-<RadiumStarterRoot styles={{ myStyle: { color: '#abc' } }}>
+<RadiumStarterRoot styles={{myStyle: {color: '#abc'}}}>
   <Main />
 </RadiumStarterRoot>
 ```
@@ -250,7 +260,9 @@ Like the HTML `<button>` element but with some useful added attributes:
 Example:
 
 ```javascript
-<Button rsLarge rsPrimary>Sign up</Button>
+<Button rsLarge rsPrimary>
+  Sign up
+</Button>
 ```
 
 ### `<Form>`
@@ -268,4 +280,5 @@ Augment the corresponding HTML elements with the following attributes:
 ## License
 
 MIT
+
 <!-- contentEnd -->

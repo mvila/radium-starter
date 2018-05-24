@@ -16,11 +16,11 @@ class Styles {
       'altBodyColor', // DEPRECATED
       'borderColor',
       'altBorderColor',
-      'primaryTextColor',
-      'secondaryTextColor',
+      'textColor',
+      'altTextColor',
       'mutedTextColor',
-      'inversePrimaryTextColor',
-      'inverseSecondaryTextColor',
+      'inverseTextColor',
+      'inverseAltTextColor',
       'inverseMutedTextColor',
       'errorColor',
       'warningColor'

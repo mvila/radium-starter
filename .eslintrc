@@ -15,6 +15,7 @@
     "no-negated-condition": 0,
     "no-return-await": 0,
     "no-unused-vars": [2, {"ignoreRestSiblings": true, "argsIgnorePattern": "^_"}],
-    "no-warning-comments": 0
+    "no-warning-comments": 0,
+    "prefer-destructuring": 0
   }
 }

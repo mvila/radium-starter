@@ -18,14 +18,18 @@ class Application {
     this.themes = {
       default: pick(this.theme, [
         'backgroundColor',
+        'inverseBackgroundColor',
         'borderColor',
+        'inverseBorderColor',
         'baseTextColor',
         'baseInverseTextColor'
       ]),
 
       inverse: {
         backgroundColor: '#000',
+        inverseBackgroundColor: '#FFF',
         borderColor: 'rgba(255,255,255,.3)',
+        inverseBorderColor: 'rgba(0,0,0,.12)',
         baseTextColor: '#FFF',
         baseInverseTextColor: '#000'
       }

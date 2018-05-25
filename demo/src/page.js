@@ -18,7 +18,7 @@ export class Page extends React.Component {
   render() {
     return (
       <RadiumStarter>
-        {(_t, s) => {
+        {(t, s) => {
           const {app} = this.props;
 
           const title1 = [
@@ -115,6 +115,9 @@ export class Page extends React.Component {
               </p>
               <p>
                 <Button rsAccent>Accent button</Button>
+              </p>
+              <p style={{padding: '1rem', backgroundColor: t.inverseBackgroundColor}}>
+                <Button rsInverse>Inverse button</Button>
               </p>
               <p>
                 <Button disabled>Disabled button</Button>

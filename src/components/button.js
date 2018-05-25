@@ -12,6 +12,7 @@ export class Button extends React.Component {
     rsLarge: PropTypes.bool,
     rsPrimary: PropTypes.bool,
     rsAccent: PropTypes.bool,
+    rsInverse: PropTypes.bool,
     disabled: PropTypes.bool,
     style: PropTypes.object
   };
@@ -94,6 +95,12 @@ export class Button extends React.Component {
       borderColor = theme.accentButtonBorderColor;
       hoveredBackgroundColor = theme.hoveredAccentButtonBackgroundColor;
       hoveredBorderColor = theme.hoveredAccentButtonBorderColor;
+    } else if (this.props.rsInverse) {
+      color = theme.inverseButtonTextColor;
+      backgroundColor = theme.inverseButtonBackgroundColor;
+      borderColor = theme.inverseButtonBorderColor;
+      hoveredBackgroundColor = theme.hoveredInverseButtonBackgroundColor;
+      hoveredBorderColor = theme.hoveredInverseButtonBorderColor;
     } else {
       color = theme.buttonTextColor;
       backgroundColor = theme.buttonBackgroundColor;
@@ -144,7 +151,14 @@ export class Button extends React.Component {
 
     style = [style, this.props.style];
 
-    const props = omit(this.props, ['rsSmall', 'rsLarge', 'rsPrimary', 'rsAccent', 'style']);
+    const props = omit(this.props, [
+      'rsSmall',
+      'rsLarge',
+      'rsPrimary',
+      'rsAccent',
+      'rsInverse',
+      'style'
+    ]);
     return (
       <button
         style={style}

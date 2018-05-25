@@ -34,7 +34,11 @@ export class Theme extends EventEmitterMixin() {
 
   @def bodyColor = this.backgroundColor; // DEPRECATED
 
+  @def inverseBackgroundColor = '#000';
+
   @def borderColor = 'rgba(0,0,0,.12)';
+
+  @def inverseBorderColor = 'rgba(255,255,255,.88)';
 
   @def
   darkPrimaryColor = Color(this.primaryColor)
@@ -66,6 +70,11 @@ export class Theme extends EventEmitterMixin() {
   @def
   altBorderColor = Color(this.borderColor)
     .opaquer(0.3)
+    .string();
+
+  @def
+  altInverseBorderColor = Color(this.inverseBorderColor)
+    .opaquer(1)
     .string();
 
   @def baseTextColor = '#000';
@@ -261,6 +270,16 @@ export class Theme extends EventEmitterMixin() {
   @def hoveredAccentButtonBackgroundColor = this.darkAccentColor;
 
   @def hoveredAccentButtonBorderColor = this.hoveredAccentButtonBackgroundColor;
+
+  @def inverseButtonTextColor = this.inverseTextColor;
+
+  @def inverseButtonBackgroundColor = this.inverseBackgroundColor;
+
+  @def inverseButtonBorderColor = this.inverseBorderColor;
+
+  @def hoveredInverseButtonBackgroundColor = this.inverseBackgroundColor;
+
+  @def hoveredInverseButtonBorderColor = this.altInverseBorderColor;
 
   // --- Inputs ---
 

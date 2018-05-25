@@ -152,7 +152,7 @@ export class Main extends React.Component {
 
 Here is a few useful theme variables:
 
-* Base colors: `primaryColor`, `accentColor`, `textColor`, `backgroundColor`, `borderColor`, `errorColor`, `warningColor`.
+* Base colors: `primaryColor`, `accentColor`, `textColor`, `backgroundColor`, `inverseBackgroundColor`, `borderColor`, `inverseBorderColor`, `errorColor`, `warningColor`.
 * Font families: `sansSerifFontFamily`, `serifFontFamily`, `monospaceFontFamily`.
 * Font sizes: `baseFontSize`, `smallFontSize`, `largeFontSize`, `h1FontSize`, `h2FontSize`,...
 * Line heights: `baseLineHeight`, `smallLineHeight`, `headingsLineHeight`.
@@ -255,7 +255,7 @@ Most of the enhancements consist only in CSS styling and you don't have to do an
 Like the HTML `<button>` element but with some useful added attributes:
 
 * `rsSmall`, `rsLarge`: smaller/larger sizes for your controls.
-* `rsPrimary`, `rsAccent`: colorize your buttons.
+* `rsPrimary`, `rsAccent`, `rsInverse`: colorize your buttons.
 
 Example:
 

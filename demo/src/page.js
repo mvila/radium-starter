@@ -116,9 +116,6 @@ export class Page extends React.Component {
               <p>
                 <Button rsAccent>Accent button</Button>
               </p>
-              <p style={{padding: '1rem', backgroundColor: t.inverseBackgroundColor}}>
-                <Button rsInverse>Inverse button</Button>
-              </p>
               <p>
                 <Button disabled>Disabled button</Button>
               </p>
@@ -126,6 +123,9 @@ export class Page extends React.Component {
                 <Button style={[s.primaryColor, {textTransform: 'uppercase'}]}>
                   Custom button
                 </Button>
+              </p>
+              <p style={{padding: '1rem', backgroundColor: t.inverseBackgroundColor}}>
+                <Button rsInverse>Inverse button</Button>
               </p>
 
               <h3 style={title3}>Inputs</h3>
@@ -170,6 +170,21 @@ export class Page extends React.Component {
                   <Input type="radio" />&nbsp;Radio button
                 </label>
               </p>
+              <div style={{padding: '1rem', backgroundColor: t.inverseBackgroundColor}}>
+                <p>
+                  <Input type="text" rsInverse defaultValue="Inverse field" />
+                </p>
+                <p>
+                  <TextArea rsInverse defaultValue="Inverse textarea" cols={40} />
+                </p>
+                <p style={s.noMargins}>
+                  <Select rsInverse>
+                    <option>Paris</option>
+                    <option>New York</option>
+                    <option>Tokyo</option>
+                  </Select>
+                </p>
+              </div>
 
               <h3 style={title3}>Validation</h3>
               {/* eslint-disable no-script-url,no-alert */}

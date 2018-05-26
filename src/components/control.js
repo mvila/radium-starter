@@ -10,6 +10,7 @@ export class Control extends React.Component {
   static propTypes = {
     rsSmall: PropTypes.bool,
     rsLarge: PropTypes.bool,
+    rsInverse: PropTypes.bool,
     rsAutoSelect: PropTypes.bool,
     rsCustomValidity: PropTypes.string,
     disabled: PropTypes.bool,
@@ -43,7 +44,13 @@ export class Control extends React.Component {
   createActualProps(props) {
     const {theme} = this.context;
 
-    const actualProps = omit(props, ['rsSmall', 'rsLarge', 'rsAutoSelect', 'rsCustomValidity']);
+    const actualProps = omit(props, [
+      'rsSmall',
+      'rsLarge',
+      'rsInverse',
+      'rsAutoSelect',
+      'rsCustomValidity'
+    ]);
 
     let xPadding;
     let yPadding;
@@ -73,24 +80,30 @@ export class Control extends React.Component {
       paddingLeft: xPadding,
       fontSize,
       lineHeight: theme.inputLineHeight,
-      color: theme.inputTextColor,
-      backgroundColor: theme.inputBackgroundColor,
+      color: props.rsInverse ? theme.inverseInputTextColor : theme.inputTextColor,
+      backgroundColor: props.rsInverse ?
+        theme.inverseInputBackgroundColor :
+        theme.inputBackgroundColor,
       backgroundImage: 'none',
       backgroundClip: 'padding-box',
       borderWidth: theme.inputBorderWidth,
       borderStyle: 'solid',
-      borderColor: theme.inputBorderColor,
+      borderColor: props.rsInverse ? theme.inverseInputBorderColor : theme.inputBorderColor,
       borderRadius,
       outline: 'none',
       boxShadow: 'none',
       transition: 'border-color ease-in-out .15s',
       ':focus': {
-        borderColor: theme.focusedInputBorderColor
+        borderColor: props.rsInverse ?
+          theme.focusedInverseInputBorderColor :
+          theme.focusedInputBorderColor
       }
     };
 
     if (actualProps.disabled || actualProps.readonly) {
-      style.backgroundColor = theme.disabledInputBackgroundColor;
+      style.backgroundColor = props.rsInverse ?
+        theme.disabledInverseInputBackgroundColor :
+        theme.disabledInputBackgroundColor;
       style.opacity = 1;
     }
 

@@ -274,6 +274,7 @@ Use this component in replacement of the HTML `<form>` element to enjoy [Form va
 Augment the corresponding HTML elements with the following attributes:
 
 * `rsSmall`, `rsLarge`: smaller/larger sizes for your input fields.
+* `rsInverse`: inverse styling.
 * `rsAutoSelect`: similar to the `autofocus` HTML attribute but select the content of an input in addition to focusing it.
 * `rsCustomValidity`: provide `setCustomValidity()` in a declarative way.
 

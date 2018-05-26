@@ -11,13 +11,15 @@ class Styles {
       'accentColor',
       'darkAccentColor',
       'backgroundColor',
-      'altBackgroundColor',
       'bodyColor', // DEPRECATED
+      'altBackgroundColor',
       'altBodyColor', // DEPRECATED
       'borderColor',
       'altBorderColor',
       'textColor',
+      'primaryTextColor', // DEPRECATED
       'altTextColor',
+      'secondaryTextColor', // DEPRECATED
       'mutedTextColor',
       'inverseTextColor',
       'inverseAltTextColor',

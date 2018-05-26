@@ -36,6 +36,8 @@ export class Theme extends EventEmitterMixin() {
 
   @def inverseBackgroundColor = '#000';
 
+  @def overlayBackgroundColor = '#000';
+
   @def borderColor = 'rgba(0,0,0,.12)';
 
   @def inverseBorderColor = 'rgba(255,255,255,.88)';

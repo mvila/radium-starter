@@ -311,7 +311,7 @@ export class Theme extends EventEmitterMixin() {
 
   @def focusedInverseInputBorderColor = this.primaryColor; // TODO
 
-  @def disabledInverseInputBackgroundColor = this.altBackgroundColor; // TODO
+  @def disabledInverseInputBackgroundColor = this.inverseInputBackgroundColor; // TODO
 
   @def inputXPadding = '.625rem';
 

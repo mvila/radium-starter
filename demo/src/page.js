@@ -161,13 +161,17 @@ export class Page extends React.Component {
                 </Select>
               </p>
               <p style={{lineHeight: 1}}>
-                <label>
-                  <Input type="checkbox" />&nbsp;Checkbox
+                <Input id="checkbox" type="checkbox" />
+                &nbsp;
+                <label htmlFor="checkbox" style={{verticalAlign: 'middle'}}>
+                  Checkbox
                 </label>
               </p>
               <p style={{lineHeight: 1}}>
-                <label>
-                  <Input type="radio" />&nbsp;Radio button
+                <Input id="radio" type="radio" />
+                &nbsp;
+                <label htmlFor="radio" style={{verticalAlign: 'middle'}}>
+                  Radio button
                 </label>
               </p>
               <div style={{padding: '1rem', backgroundColor: t.inverseBackgroundColor}}>
@@ -214,23 +218,29 @@ export class Page extends React.Component {
 
               <h2 style={title2}>Dynamic theming</h2>
               <p style={{lineHeight: 1}}>
-                <label>
-                  <Input
-                    type="radio"
-                    value="default"
-                    checked={app.themeName === 'default'}
-                    onChange={::this.switchTheme}
-                  />&nbsp;Default theme
+                <Input
+                  id="radio-default"
+                  type="radio"
+                  value="default"
+                  checked={app.themeName === 'default'}
+                  onChange={::this.switchTheme}
+                />
+                &nbsp;
+                <label htmlFor="radio-default" style={{verticalAlign: 'middle'}}>
+                  Default theme
                 </label>
               </p>
               <p style={{lineHeight: 1}}>
-                <label>
-                  <Input
-                    type="radio"
-                    value="inverse"
-                    checked={app.themeName === 'inverse'}
-                    onChange={::this.switchTheme}
-                  />&nbsp;Inverse theme
+                <Input
+                  id="radio-inverse"
+                  type="radio"
+                  value="inverse"
+                  checked={app.themeName === 'inverse'}
+                  onChange={::this.switchTheme}
+                />
+                &nbsp;
+                <label htmlFor="radio-inverse" style={{verticalAlign: 'middle'}}>
+                  Inverse theme
                 </label>
               </p>
             </div>

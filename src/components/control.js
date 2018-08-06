@@ -8,6 +8,7 @@ import omit from 'lodash/omit';
 @Radium
 export class Control extends React.Component {
   static propTypes = {
+    type: PropTypes.string,
     rsSmall: PropTypes.bool,
     rsLarge: PropTypes.bool,
     rsInverse: PropTypes.bool,
@@ -52,63 +53,70 @@ export class Control extends React.Component {
       'rsCustomValidity'
     ]);
 
-    let xPadding;
-    let yPadding;
-    let fontSize;
-    let borderRadius;
-    if (props.rsSmall) {
-      xPadding = theme.smallInputXPadding;
-      yPadding = theme.smallInputYPadding;
-      fontSize = theme.smallFontSize;
-      borderRadius = theme.smallBorderRadius;
-    } else if (props.rsLarge) {
-      xPadding = theme.largeInputXPadding;
-      yPadding = theme.largeInputYPadding;
-      fontSize = theme.largeFontSize;
-      borderRadius = theme.largeBorderRadius;
+    let style;
+
+    const type = (actualProps.type || '').toLowerCase();
+    if (type === 'checkbox' || type === 'radio') {
+      style = {verticalAlign: 'middle'};
     } else {
-      xPadding = theme.inputXPadding;
-      yPadding = theme.inputYPadding;
-      fontSize = theme.baseFontSize;
-      borderRadius = theme.borderRadius;
-    }
-
-    const style = {
-      paddingTop: yPadding,
-      paddingRight: xPadding,
-      paddingBottom: yPadding,
-      paddingLeft: xPadding,
-      fontSize,
-      lineHeight: theme.inputLineHeight,
-      color: props.rsInverse ? theme.inverseInputTextColor : theme.inputTextColor,
-      backgroundColor: props.rsInverse ?
-        theme.inverseInputBackgroundColor :
-        theme.inputBackgroundColor,
-      backgroundImage: 'none',
-      backgroundClip: 'padding-box',
-      borderWidth: theme.inputBorderWidth,
-      borderStyle: 'solid',
-      borderColor: props.rsInverse ? theme.inverseInputBorderColor : theme.inputBorderColor,
-      borderRadius,
-      outline: 'none',
-      boxShadow: 'none',
-      transition: 'border-color ease-in-out .15s',
-      ':focus': {
-        borderColor: props.rsInverse ?
-          theme.focusedInverseInputBorderColor :
-          theme.focusedInputBorderColor
+      let xPadding;
+      let yPadding;
+      let fontSize;
+      let borderRadius;
+      if (props.rsSmall) {
+        xPadding = theme.smallInputXPadding;
+        yPadding = theme.smallInputYPadding;
+        fontSize = theme.smallFontSize;
+        borderRadius = theme.smallBorderRadius;
+      } else if (props.rsLarge) {
+        xPadding = theme.largeInputXPadding;
+        yPadding = theme.largeInputYPadding;
+        fontSize = theme.largeFontSize;
+        borderRadius = theme.largeBorderRadius;
+      } else {
+        xPadding = theme.inputXPadding;
+        yPadding = theme.inputYPadding;
+        fontSize = theme.baseFontSize;
+        borderRadius = theme.borderRadius;
       }
-    };
 
-    if (actualProps.disabled || actualProps.readonly) {
-      style.backgroundColor = props.rsInverse ?
-        theme.disabledInverseInputBackgroundColor :
-        theme.disabledInputBackgroundColor;
-      style.opacity = 1;
-    }
+      style = {
+        paddingTop: yPadding,
+        paddingRight: xPadding,
+        paddingBottom: yPadding,
+        paddingLeft: xPadding,
+        fontSize,
+        lineHeight: theme.inputLineHeight,
+        color: props.rsInverse ? theme.inverseInputTextColor : theme.inputTextColor,
+        backgroundColor: props.rsInverse ?
+          theme.inverseInputBackgroundColor :
+          theme.inputBackgroundColor,
+        backgroundImage: 'none',
+        backgroundClip: 'padding-box',
+        borderWidth: theme.inputBorderWidth,
+        borderStyle: 'solid',
+        borderColor: props.rsInverse ? theme.inverseInputBorderColor : theme.inputBorderColor,
+        borderRadius,
+        outline: 'none',
+        boxShadow: 'none',
+        transition: 'border-color ease-in-out .15s',
+        ':focus': {
+          borderColor: props.rsInverse ?
+            theme.focusedInverseInputBorderColor :
+            theme.focusedInputBorderColor
+        }
+      };
 
-    if (actualProps.disabled) {
-      style.cursor = theme.disabledCursor;
+      if (actualProps.disabled || actualProps.readonly) {
+        style.backgroundColor = props.rsInverse ?
+          theme.disabledInverseInputBackgroundColor :
+          theme.disabledInputBackgroundColor;
+        style.opacity = 1;
+      }
+
+      if (actualProps.disabled) {
+        style.cursor = theme.disabledCursor;
+      }
     }
 
     actualProps.style = [style, actualProps.style];

@@ -136,7 +136,8 @@ export class Theme extends EventEmitterMixin() {
   // --- Typography ---
 
   @def
-  sansSerifFontFamily = '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Fira Sans\', \'Droid Sans\', \'Helvetica Neue\', Arial, sans-serif';
+  sansSerifFontFamily =
+    '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Fira Sans\', \'Droid Sans\', \'Helvetica Neue\', Arial, sans-serif';
 
   @def serifFontFamily = 'Georgia, \'Times New Roman\', Times, serif';
 
@@ -171,11 +172,13 @@ export class Theme extends EventEmitterMixin() {
   // '1.2rem'
   @def largeFontSize = this.modularScale(1);
 
+  @def strongFontWeight = 'bold';
+
   @def headingsMarginBottom = '1rem';
 
   @def headingsFontFamily = 'inherit';
 
-  @def headingsFontWeight = 'bold';
+  @def headingsFontWeight = this.strongFontWeight;
 
   @def headingsLineHeight = this.smallLineHeight;
 

@@ -53,7 +53,7 @@ class Styles {
     };
 
     this.bold = {
-      fontWeight: 'bold'
+      fontWeight: theme.strongFontWeight
     };
 
     this.italic = {

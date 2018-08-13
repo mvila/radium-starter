@@ -42,6 +42,10 @@ class Reboot {
         marginBottom: '1rem'
       },
 
+      strong: {
+        fontWeight: theme.strongFontWeight
+      },
+
       small: {
         fontSize: theme.modularScale(-1, '100%')
       },
@@ -62,7 +66,7 @@ class Reboot {
       },
 
       dt: {
-        fontWeight: 'bold'
+        fontWeight: theme.strongFontWeight
       },
 
       dd: {
